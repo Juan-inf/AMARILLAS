@@ -13,6 +13,15 @@
     --sepal-color: linear-gradient(to bottom, #2f6d22, #67a83f);
     --ease-grow: cubic-bezier(0.2, 0.7, 0.2, 1);
     --ease-bloom: cubic-bezier(0.3, 1.4, 0.5, 1);
+    --lift: 0vmin;
+}
+
+/* En pantallas más altas que anchas (celulares en vertical) sobra espacio
+   vertical: subir un poco toda la escena reduce el vacío de arriba. */
+@media (max-aspect-ratio: 3/4){
+    :root{
+        --lift: 22vmin;
+    }
 }
 
 body{
@@ -24,12 +33,13 @@ body{
     overflow: hidden;
 }
 
+
 /* ---------- Ramo ---------- */
 
 .bouquet{
     position: absolute;
     left: 50%;
-    bottom: 20.6vmin;
+    bottom: calc(var(--lift) + 20.6vmin);
     width: 0;
     height: 0;
     z-index: 2;
@@ -247,7 +257,7 @@ body{
 .pot_shadow{
     position: absolute;
     left: 50%;
-    bottom: 1.4vmin;
+    bottom: calc(var(--lift) + 1.4vmin);
     width: 40vmin;
     height: 4.4vmin;
     margin-left: -20vmin;
@@ -259,7 +269,7 @@ body{
 .pot_part{
     position: absolute;
     left: 50%;
-    bottom: 3vmin;
+    bottom: calc(var(--lift) + 3vmin);
     width: 32vmin;
     height: 24vmin;
     margin-left: -16vmin;
@@ -315,7 +325,7 @@ body{
 .bow{
     position: absolute;
     left: 50%;
-    bottom: 11.2vmin;
+    bottom: calc(var(--lift) + 11.2vmin);
     width: 0;
     height: 0;
     z-index: 4;
@@ -415,11 +425,12 @@ body.waiting :not(.intro):not(.intro *)::after{
 }
 
 .intro_box{
-    max-width: min(92vw, 92vmin);
+    width: min(92vw, 92vmin, 480px);
+    max-width: 100%;
 }
 
 .intro_emoji{
-    font-size: max(48px, 11vmin);
+    font-size: max(40px, 11vmin);
     line-height: 1;
     animation: spark-pop 0.8s var(--ease-bloom) backwards;
 }
@@ -427,15 +438,17 @@ body.waiting :not(.intro):not(.intro *)::after{
 .intro_title{
     margin-top: 1.4vmin;
     font-family: "Snell Roundhand", "Apple Chancery", "Segoe Script", "Brush Script MT", cursive;
-    font-size: max(34px, 7vmin);
+    font-size: clamp(28px, 7vmin, 52px);
     color: #ffd21f;
+    overflow-wrap: break-word;
 }
 
 .intro_sub{
     margin-top: 1vmin;
-    font: 500 max(13px, 2vmin) / 1.4 "Helvetica Neue", Arial, sans-serif;
+    font: 500 max(12px, 2vmin) / 1.4 "Helvetica Neue", Arial, sans-serif;
     letter-spacing: 0.2vmin;
     opacity: 0.9;
+    overflow-wrap: break-word;
 }
 
 /* ---------- Paso 1: nombre de quien recibe el regalo ---------- */
@@ -456,7 +469,8 @@ body.waiting :not(.intro):not(.intro *)::after{
 }
 
 .intro_input{
-    width: min(78vw, 46vmin);
+    width: min(78vw, 46vmin, 360px);
+    max-width: 100%;
     padding: max(10px, 1.5vmin) max(16px, 2.2vmin);
     border: 0.2vmin solid rgba(255, 210, 40, 0.6);
     border-radius: 10vmin;
@@ -508,9 +522,9 @@ body.waiting :not(.intro):not(.intro *)::after{
 
 .intro_message{
     margin-top: 2vmin;
-    max-width: min(88vw, 74vmin);
+    max-width: min(88vw, 74vmin, 620px);
     font-family: "Snell Roundhand", "Apple Chancery", "Segoe Script", "Brush Script MT", cursive;
-    font-size: max(24px, 5.4vmin);
+    font-size: clamp(22px, 5.4vmin, 46px);
     line-height: 1.3;
 }
 
@@ -635,7 +649,7 @@ body.waiting :not(.intro):not(.intro *)::after{
 .tag_string{
     position: absolute;
     left: 50%;
-    bottom: 9vmin;
+    bottom: calc(var(--lift) + 9vmin);
     width: 30vmin;
     height: 16vmin;
     z-index: 5;
@@ -651,7 +665,7 @@ body.waiting :not(.intro):not(.intro *)::after{
     position: absolute;
     left: 50%;
     margin-left: 12vmin;
-    bottom: 2.6vmin;
+    bottom: calc(var(--lift) + 2.6vmin);
     width: 36vmin;
     height: auto;
     min-height: 22vmin;
@@ -819,32 +833,32 @@ body.waiting :not(.intro):not(.intro *)::after{
     }
 
     .light-7{
-        left: 90vmax;
+        left: 90vw;
         animation-delay: 2s;
     }
 
     .light-8{
-        left: 60vmax;
+        left: 60vw;
         animation-delay: 3.5s;
     }
 
     .light-9{
-        left: 70vmax;
+        left: 70vw;
         animation-delay: 2s;
     }
 
     .light-10{
-        left: 95vmax;
+        left: 95vw;
         animation-delay: 3.5s;
     }
 
     .light-11{
-        left: 75vmax;
+        left: 75vw;
         animation-delay: 3s;
     }
 
     .light-12{
-        left: 85vmax;
+        left: 85vw;
         animation-delay: 0.5s;
     }
 
