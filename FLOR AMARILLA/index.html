@@ -1,42 +1,989 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sunflower</title>
     <link rel="stylesheet" href="style.css">
+    <noscript><style>body.waiting *{animation-play-state: running !important} .intro{display: none}</style></noscript>
 </head>
-<body>
-    <div class="sunflower">
-        <div class="flower_wrapper">
-            <div class="flower_stem"></div>
-            <div class="flower_center"></div>
-            <div class="flower_petal flower_petal-1"></div>
-            <div class="flower_petal flower_petal-2"></div>
-            <div class="flower_petal flower_petal-3"></div>
-            <div class="flower_petal flower_petal-4"></div>
-            <div class="flower_petal flower_petal-5"></div>
-            <div class="flower_petal flower_petal-6"></div>
-            <div class="flower_petal flower_petal-7"></div>
-            <div class="flower_petal flower_petal-8"></div>
-            <div class="flower_petal flower_petal-9"></div>
-            <div class="flower_petal flower_petal-10"></div>
-            <div class="flower_petal flower_petal-11"></div>
-            <div class="flower_petal flower_petal-12"></div>
-
-            <div class="flower_leaf flower_leaf-1"></div>
-            <div class="flower_leaf flower_leaf-2"></div>
-
-            <div class="flower_light flower_light-1"></div>
-            <div class="flower_light flower_light-2"></div>
-            <div class="flower_light flower_light-3"></div>
-            <div class="flower_light flower_light-4"></div>
-            <div class="flower_light flower_light-5"></div>
-            <div class="flower_light flower_light-6"></div>
-            <div class="flower_light flower_light-7"></div>
-            <div class="flower_light flower_light-8"></div>
+<body class="waiting">
+    <div class="intro">
+        <div class="intro_box">
+            <p class="intro_emoji">🌻</p>
+            <p class="intro_title">Un regalo para ti</p>
+            <p class="intro_sub">21 de septiembre · Día de las Flores Amarillas</p>
+            <form class="intro_form">
+                <label class="intro_label" for="visitor-name">Escribe tu nombre aquí</label>
+                <input class="intro_input" id="visitor-name" name="visitor-name" type="text" placeholder="Tu nombre" maxlength="24" autocomplete="off" required autofocus>
+                <button class="intro_next" type="submit">Continuar</button>
+            </form>
         </div>
+    </div>
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+  <linearGradient id="leafGrad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#8ec962"/>
+    <stop offset=".46" stop-color="#4f9636"/>
+    <stop offset=".54" stop-color="#3a7a2b"/>
+    <stop offset="1" stop-color="#1f5a1d"/>
+  </linearGradient>
+  <radialGradient id="leafLight" cx=".38" cy=".42" r=".6">
+    <stop offset="0" stop-color="#ffffff" stop-opacity=".16"/>
+    <stop offset="1" stop-color="#000000" stop-opacity=".14"/>
+  </radialGradient>
+  <symbol id="leaf-l1" viewBox="0 0 100 150" overflow="visible">
+    <path d="M47.6,150 L52.4,150 L51.6,122 L48.4,122 Z" fill="#4f8a35"/>
+    <path d="M33.8,0.0 L44.8,13.9 L49.4,15.1 L52.1,21.5 L55.9,22.7 L59.5,29.2 L63.7,30.4 L66.8,36.8 L70.9,38.1 L73.8,44.5 L78.1,45.7 L80.4,52.1 L84.9,53.4 L86.6,59.8 L89.9,61.0 L92.1,67.5 L95.2,68.7 L96.5,75.1 L100.5,76.3 L98.9,82.8 L101.9,84.0 L98.6,90.4 L101.7,91.7 L95.1,98.1 L96.4,99.3 L88.1,105.7 L89.5,107.0 L77.5,113.4 L70.1,121.0 L75.0,126.5 L66.0,132.0 L58.0,131.0 L50.0,125.0 L42.0,131.0 L34.0,132.0 L25.0,126.5 L29.4,121.0 L21.9,113.4 L10.6,107.0 L11.8,105.7 L3.8,99.3 L5.2,98.1 L-1.0,91.7 L1.4,90.4 L-2.6,84.0 L-0.2,82.8 L-3.1,76.3 L-0.2,75.1 L-3.0,68.7 L1.0,67.5 L-0.2,61.0 L3.3,59.8 L3.8,53.4 L6.7,52.1 L7.9,45.7 L10.9,44.5 L11.3,38.1 L15.8,36.8 L16.3,30.4 L20.9,29.2 L22.4,22.7 L25.7,21.5 L25.8,15.1 L29.8,13.9 L33.8,0.0Z" fill="url(#leafGrad)" stroke="#1d4a17" stroke-opacity=".6" stroke-width=".8" stroke-linejoin="round"/>
+    <path d="M33.8,0.0 L44.8,13.9 L49.4,15.1 L52.1,21.5 L55.9,22.7 L59.5,29.2 L63.7,30.4 L66.8,36.8 L70.9,38.1 L73.8,44.5 L78.1,45.7 L80.4,52.1 L84.9,53.4 L86.6,59.8 L89.9,61.0 L92.1,67.5 L95.2,68.7 L96.5,75.1 L100.5,76.3 L98.9,82.8 L101.9,84.0 L98.6,90.4 L101.7,91.7 L95.1,98.1 L96.4,99.3 L88.1,105.7 L89.5,107.0 L77.5,113.4 L70.1,121.0 L75.0,126.5 L66.0,132.0 L58.0,131.0 L50.0,125.0 L42.0,131.0 L34.0,132.0 L25.0,126.5 L29.4,121.0 L21.9,113.4 L10.6,107.0 L11.8,105.7 L3.8,99.3 L5.2,98.1 L-1.0,91.7 L1.4,90.4 L-2.6,84.0 L-0.2,82.8 L-3.1,76.3 L-0.2,75.1 L-3.0,68.7 L1.0,67.5 L-0.2,61.0 L3.3,59.8 L3.8,53.4 L6.7,52.1 L7.9,45.7 L10.9,44.5 L11.3,38.1 L15.8,36.8 L16.3,30.4 L20.9,29.2 L22.4,22.7 L25.7,21.5 L25.8,15.1 L29.8,13.9 L33.8,0.0Z" fill="url(#leafLight)"/>
+    <path d="M49.6,105.8 Q70.7,102.8 93.8,89.5 M48.9,92.6 Q75.9,89.6 92.0,76.2 M47.8,79.4 Q75.4,76.4 84.7,63.0 M46.3,66.1 Q71.0,63.1 75.0,49.8 M44.6,52.9 Q64.6,49.9 64.1,36.5 M42.4,39.7 Q57.3,36.7 52.4,23.3 M39.9,26.5 Q49.3,23.5 40.9,10.1 M50,124 C70.0,118 82.0,92 88.6,69.3 M49.6,105.8 Q28.9,102.8 5.9,89.5 M48.9,92.6 Q23.2,89.6 4.5,76.2 M47.8,79.4 Q21.3,76.4 6.6,63.0 M46.3,66.1 Q21.6,63.1 11.5,49.8 M44.6,52.9 Q23.5,49.9 18.6,36.5 M42.4,39.7 Q26.7,36.7 26.1,23.3 M39.9,26.5 Q30.4,23.5 31.9,10.1 M50,124 C30.0,118 18.0,92 5.2,69.3" fill="none" stroke="#12350f" stroke-opacity=".22" stroke-width="1.4" stroke-linecap="round" transform="translate(1,1.2)"/>
+    <path d="M49.6,105.8 Q70.7,102.8 93.8,89.5 M48.9,92.6 Q75.9,89.6 92.0,76.2 M47.8,79.4 Q75.4,76.4 84.7,63.0 M46.3,66.1 Q71.0,63.1 75.0,49.8 M44.6,52.9 Q64.6,49.9 64.1,36.5 M42.4,39.7 Q57.3,36.7 52.4,23.3 M39.9,26.5 Q49.3,23.5 40.9,10.1 M50,124 C70.0,118 82.0,92 88.6,69.3 M49.6,105.8 Q28.9,102.8 5.9,89.5 M48.9,92.6 Q23.2,89.6 4.5,76.2 M47.8,79.4 Q21.3,76.4 6.6,63.0 M46.3,66.1 Q21.6,63.1 11.5,49.8 M44.6,52.9 Q23.5,49.9 18.6,36.5 M42.4,39.7 Q26.7,36.7 26.1,23.3 M39.9,26.5 Q30.4,23.5 31.9,10.1 M50,124 C30.0,118 18.0,92 5.2,69.3" fill="none" stroke="#d9f2ab" stroke-opacity=".55" stroke-width=".95" stroke-linecap="round"/>
+    <path d="M50,150 L50,128 L50.0,120.8 L49.9,115.5 L49.7,110.2 L49.5,105.0 L49.3,99.8 L49.0,94.5 L48.6,89.2 L48.2,84.0 L47.7,78.8 L47.2,73.5 L46.6,68.2 L46.0,63.0 L45.2,57.8 L44.5,52.5 L43.7,47.2 L42.8,42.0 L41.9,36.8 L40.9,31.5 L39.8,26.2 L38.8,21.0 L37.6,15.8 L36.4,10.5 L35.1,5.2 L33.8,0.0" fill="none" stroke="#12350f" stroke-opacity=".25" stroke-width="3.2" stroke-linecap="round" transform="translate(1,1)"/>
+    <path d="M50,150 L50,128 L50.0,120.8 L49.9,115.5 L49.7,110.2 L49.5,105.0 L49.3,99.8 L49.0,94.5 L48.6,89.2 L48.2,84.0 L47.7,78.8 L47.2,73.5 L46.6,68.2 L46.0,63.0 L45.2,57.8 L44.5,52.5 L43.7,47.2 L42.8,42.0 L41.9,36.8 L40.9,31.5 L39.8,26.2 L38.8,21.0 L37.6,15.8 L36.4,10.5 L35.1,5.2 L33.8,0.0" fill="none" stroke="#c9e79a" stroke-width="2.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="leaf-l2" viewBox="0 0 100 150" overflow="visible">
+    <path d="M47.6,150 L52.4,150 L51.6,122 L48.4,122 Z" fill="#4f8a35"/>
+    <path d="M39.2,0.0 L49.0,13.9 L52.4,15.1 L56.0,21.5 L59.4,22.7 L63.2,29.2 L67.9,30.4 L70.4,36.8 L74.9,38.1 L77.2,44.5 L81.5,45.7 L83.2,52.1 L86.8,53.4 L88.4,59.8 L92.3,61.0 L92.6,67.5 L96.4,68.7 L95.9,75.1 L99.4,76.3 L97.6,82.8 L100.2,84.0 L97.4,90.4 L100.1,91.7 L94.5,98.1 L96.6,99.3 L88.2,105.7 L90.2,107.0 L78.1,113.4 L70.7,121.0 L75.0,126.5 L66.0,132.0 L58.0,131.0 L50.0,125.0 L42.0,131.0 L34.0,132.0 L25.0,126.5 L29.3,121.0 L21.7,113.4 L9.6,107.0 L11.3,105.7 L2.3,99.3 L4.5,98.1 L-2.3,91.7 L0.9,90.4 L-2.9,84.0 L-0.1,82.8 L-2.3,76.3 L0.7,75.1 L-0.7,68.7 L2.7,67.5 L2.8,61.0 L5.6,59.8 L6.4,53.4 L9.3,52.1 L10.4,45.7 L13.7,44.5 L15.0,38.1 L18.7,36.8 L20.1,30.4 L24.0,29.2 L24.7,22.7 L29.2,21.5 L29.4,15.1 L33.9,13.9 L39.2,0.0Z" fill="url(#leafGrad)" stroke="#1d4a17" stroke-opacity=".6" stroke-width=".8" stroke-linejoin="round"/>
+    <path d="M39.2,0.0 L49.0,13.9 L52.4,15.1 L56.0,21.5 L59.4,22.7 L63.2,29.2 L67.9,30.4 L70.4,36.8 L74.9,38.1 L77.2,44.5 L81.5,45.7 L83.2,52.1 L86.8,53.4 L88.4,59.8 L92.3,61.0 L92.6,67.5 L96.4,68.7 L95.9,75.1 L99.4,76.3 L97.6,82.8 L100.2,84.0 L97.4,90.4 L100.1,91.7 L94.5,98.1 L96.6,99.3 L88.2,105.7 L90.2,107.0 L78.1,113.4 L70.7,121.0 L75.0,126.5 L66.0,132.0 L58.0,131.0 L50.0,125.0 L42.0,131.0 L34.0,132.0 L25.0,126.5 L29.3,121.0 L21.7,113.4 L9.6,107.0 L11.3,105.7 L2.3,99.3 L4.5,98.1 L-2.3,91.7 L0.9,90.4 L-2.9,84.0 L-0.1,82.8 L-2.3,76.3 L0.7,75.1 L-0.7,68.7 L2.7,67.5 L2.8,61.0 L5.6,59.8 L6.4,53.4 L9.3,52.1 L10.4,45.7 L13.7,44.5 L15.0,38.1 L18.7,36.8 L20.1,30.4 L24.0,29.2 L24.7,22.7 L29.2,21.5 L29.4,15.1 L33.9,13.9 L39.2,0.0Z" fill="url(#leafLight)"/>
+    <path d="M49.7,105.8 Q70.8,102.8 92.7,89.5 M49.2,92.6 Q75.5,89.6 91.4,76.2 M48.5,79.4 Q75.2,76.4 86.0,63.0 M47.6,66.1 Q72.0,63.1 77.9,49.8 M46.4,52.9 Q66.9,49.9 67.6,36.5 M44.9,39.7 Q60.4,36.7 56.2,23.3 M43.3,26.5 Q52.8,23.5 45.4,10.1 M50,124 C70.0,118 82.0,92 89.0,69.3 M49.7,105.8 Q28.6,102.8 5.5,89.5 M49.2,92.6 Q23.1,89.6 5.2,76.2 M48.5,79.4 Q21.9,76.4 8.6,63.0 M47.6,66.1 Q23.1,63.1 14.2,49.8 M46.4,52.9 Q25.8,49.9 21.5,36.5 M44.9,39.7 Q29.5,36.7 29.5,23.3 M43.3,26.5 Q33.7,23.5 36.4,10.1 M50,124 C30.0,118 18.0,92 6.7,69.3" fill="none" stroke="#12350f" stroke-opacity=".22" stroke-width="1.4" stroke-linecap="round" transform="translate(1,1.2)"/>
+    <path d="M49.7,105.8 Q70.8,102.8 92.7,89.5 M49.2,92.6 Q75.5,89.6 91.4,76.2 M48.5,79.4 Q75.2,76.4 86.0,63.0 M47.6,66.1 Q72.0,63.1 77.9,49.8 M46.4,52.9 Q66.9,49.9 67.6,36.5 M44.9,39.7 Q60.4,36.7 56.2,23.3 M43.3,26.5 Q52.8,23.5 45.4,10.1 M50,124 C70.0,118 82.0,92 89.0,69.3 M49.7,105.8 Q28.6,102.8 5.5,89.5 M49.2,92.6 Q23.1,89.6 5.2,76.2 M48.5,79.4 Q21.9,76.4 8.6,63.0 M47.6,66.1 Q23.1,63.1 14.2,49.8 M46.4,52.9 Q25.8,49.9 21.5,36.5 M44.9,39.7 Q29.5,36.7 29.5,23.3 M43.3,26.5 Q33.7,23.5 36.4,10.1 M50,124 C30.0,118 18.0,92 6.7,69.3" fill="none" stroke="#d9f2ab" stroke-opacity=".55" stroke-width=".95" stroke-linecap="round"/>
+    <path d="M50,150 L50,128 L50.0,120.8 L49.9,115.5 L49.8,110.2 L49.7,105.0 L49.5,99.8 L49.3,94.5 L49.1,89.2 L48.8,84.0 L48.5,78.8 L48.1,73.5 L47.7,68.2 L47.3,63.0 L46.8,57.8 L46.3,52.5 L45.8,47.2 L45.2,42.0 L44.6,36.8 L43.9,31.5 L43.2,26.2 L42.5,21.0 L41.7,15.8 L40.9,10.5 L40.1,5.2 L39.2,0.0" fill="none" stroke="#12350f" stroke-opacity=".25" stroke-width="3.2" stroke-linecap="round" transform="translate(1,1)"/>
+    <path d="M50,150 L50,128 L50.0,120.8 L49.9,115.5 L49.8,110.2 L49.7,105.0 L49.5,99.8 L49.3,94.5 L49.1,89.2 L48.8,84.0 L48.5,78.8 L48.1,73.5 L47.7,68.2 L47.3,63.0 L46.8,57.8 L46.3,52.5 L45.8,47.2 L45.2,42.0 L44.6,36.8 L43.9,31.5 L43.2,26.2 L42.5,21.0 L41.7,15.8 L40.9,10.5 L40.1,5.2 L39.2,0.0" fill="none" stroke="#c9e79a" stroke-width="2.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="leaf-r1" viewBox="0 0 100 150" overflow="visible">
+    <path d="M47.6,150 L52.4,150 L51.6,122 L48.4,122 Z" fill="#4f8a35"/>
+    <path d="M66.2,0.0 L70.4,13.9 L73.7,15.1 L74.1,21.5 L77.9,22.7 L78.3,29.2 L82.1,30.4 L82.6,36.8 L85.6,38.1 L87.1,44.5 L90.1,45.7 L91.7,52.1 L96.0,53.4 L96.2,59.8 L99.5,61.0 L100.1,67.5 L103.2,68.7 L102.8,75.1 L106.9,76.3 L103.5,82.8 L106.3,84.0 L101.4,90.4 L104.4,91.7 L96.4,98.1 L98.3,99.3 L88.3,105.7 L89.9,107.0 L77.3,113.4 L69.7,121.0 L75.0,126.5 L66.0,132.0 L58.0,131.0 L50.0,125.0 L42.0,131.0 L34.0,132.0 L25.0,126.5 L30.5,121.0 L23.7,113.4 L12.7,107.0 L14.4,105.7 L5.0,99.3 L7.7,98.1 L1.8,91.7 L3.6,90.4 L-0.8,84.0 L1.8,82.8 L-1.0,76.3 L2.4,75.1 L1.4,68.7 L5.4,67.5 L7.3,61.0 L10.5,59.8 L12.8,53.4 L17.3,52.1 L20.4,45.7 L25.0,44.5 L28.8,38.1 L33.1,36.8 L36.2,30.4 L41.1,29.2 L44.2,22.7 L48.6,21.5 L52.2,15.1 L55.7,13.9 L66.2,0.0Z" fill="url(#leafGrad)" stroke="#1d4a17" stroke-opacity=".6" stroke-width=".8" stroke-linejoin="round"/>
+    <path d="M66.2,0.0 L70.4,13.9 L73.7,15.1 L74.1,21.5 L77.9,22.7 L78.3,29.2 L82.1,30.4 L82.6,36.8 L85.6,38.1 L87.1,44.5 L90.1,45.7 L91.7,52.1 L96.0,53.4 L96.2,59.8 L99.5,61.0 L100.1,67.5 L103.2,68.7 L102.8,75.1 L106.9,76.3 L103.5,82.8 L106.3,84.0 L101.4,90.4 L104.4,91.7 L96.4,98.1 L98.3,99.3 L88.3,105.7 L89.9,107.0 L77.3,113.4 L69.7,121.0 L75.0,126.5 L66.0,132.0 L58.0,131.0 L50.0,125.0 L42.0,131.0 L34.0,132.0 L25.0,126.5 L30.5,121.0 L23.7,113.4 L12.7,107.0 L14.4,105.7 L5.0,99.3 L7.7,98.1 L1.8,91.7 L3.6,90.4 L-0.8,84.0 L1.8,82.8 L-1.0,76.3 L2.4,75.1 L1.4,68.7 L5.4,67.5 L7.3,61.0 L10.5,59.8 L12.8,53.4 L17.3,52.1 L20.4,45.7 L25.0,44.5 L28.8,38.1 L33.1,36.8 L36.2,30.4 L41.1,29.2 L44.2,22.7 L48.6,21.5 L52.2,15.1 L55.7,13.9 L66.2,0.0Z" fill="url(#leafLight)"/>
+    <path d="M50.4,105.8 Q71.2,102.8 96.8,89.5 M51.1,92.6 Q78.2,89.6 98.0,76.2 M52.2,79.4 Q80.4,76.4 93.6,63.0 M53.7,66.1 Q78.9,63.1 86.8,49.8 M55.4,52.9 Q75.7,49.9 80.0,36.5 M57.6,39.7 Q72.3,36.7 73.6,23.3 M60.1,26.5 Q69.3,23.5 68.3,10.1 M50,124 C70.0,118 82.0,92 96.1,69.3 M50.4,105.8 Q30.6,102.8 8.0,89.5 M51.1,92.6 Q25.5,89.6 7.2,76.2 M52.2,79.4 Q24.5,76.4 12.8,63.0 M53.7,66.1 Q27.5,63.1 23.2,49.8 M55.4,52.9 Q34.1,49.9 35.9,36.5 M57.6,39.7 Q42.5,36.7 48.3,23.3 M60.1,26.5 Q51.1,23.5 59.4,10.1 M50,124 C30.0,118 18.0,92 9.4,69.3" fill="none" stroke="#12350f" stroke-opacity=".22" stroke-width="1.4" stroke-linecap="round" transform="translate(1,1.2)"/>
+    <path d="M50.4,105.8 Q71.2,102.8 96.8,89.5 M51.1,92.6 Q78.2,89.6 98.0,76.2 M52.2,79.4 Q80.4,76.4 93.6,63.0 M53.7,66.1 Q78.9,63.1 86.8,49.8 M55.4,52.9 Q75.7,49.9 80.0,36.5 M57.6,39.7 Q72.3,36.7 73.6,23.3 M60.1,26.5 Q69.3,23.5 68.3,10.1 M50,124 C70.0,118 82.0,92 96.1,69.3 M50.4,105.8 Q30.6,102.8 8.0,89.5 M51.1,92.6 Q25.5,89.6 7.2,76.2 M52.2,79.4 Q24.5,76.4 12.8,63.0 M53.7,66.1 Q27.5,63.1 23.2,49.8 M55.4,52.9 Q34.1,49.9 35.9,36.5 M57.6,39.7 Q42.5,36.7 48.3,23.3 M60.1,26.5 Q51.1,23.5 59.4,10.1 M50,124 C30.0,118 18.0,92 9.4,69.3" fill="none" stroke="#d9f2ab" stroke-opacity=".55" stroke-width=".95" stroke-linecap="round"/>
+    <path d="M50,150 L50,128 L50.0,120.8 L50.1,115.5 L50.3,110.2 L50.5,105.0 L50.7,99.8 L51.0,94.5 L51.4,89.2 L51.8,84.0 L52.3,78.8 L52.8,73.5 L53.4,68.2 L54.0,63.0 L54.8,57.8 L55.5,52.5 L56.3,47.2 L57.2,42.0 L58.1,36.8 L59.1,31.5 L60.2,26.2 L61.2,21.0 L62.4,15.8 L63.6,10.5 L64.9,5.2 L66.2,0.0" fill="none" stroke="#12350f" stroke-opacity=".25" stroke-width="3.2" stroke-linecap="round" transform="translate(1,1)"/>
+    <path d="M50,150 L50,128 L50.0,120.8 L50.1,115.5 L50.3,110.2 L50.5,105.0 L50.7,99.8 L51.0,94.5 L51.4,89.2 L51.8,84.0 L52.3,78.8 L52.8,73.5 L53.4,68.2 L54.0,63.0 L54.8,57.8 L55.5,52.5 L56.3,47.2 L57.2,42.0 L58.1,36.8 L59.1,31.5 L60.2,26.2 L61.2,21.0 L62.4,15.8 L63.6,10.5 L64.9,5.2 L66.2,0.0" fill="none" stroke="#c9e79a" stroke-width="2.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="leaf-r2" viewBox="0 0 100 150" overflow="visible">
+    <path d="M47.6,150 L52.4,150 L51.6,122 L48.4,122 Z" fill="#4f8a35"/>
+    <path d="M60.8,0.0 L66.1,13.9 L69.6,15.1 L70.4,21.5 L73.6,22.7 L75.1,29.2 L78.1,30.4 L79.9,36.8 L83.5,38.1 L84.8,44.5 L89.3,45.7 L89.9,52.1 L94.1,53.4 L94.7,59.8 L98.9,61.0 L98.9,67.5 L102.1,68.7 L101.9,75.1 L105.3,76.3 L102.8,82.8 L105.4,84.0 L101.0,90.4 L102.9,91.7 L96.1,98.1 L97.4,99.3 L88.1,105.7 L89.1,107.0 L77.2,113.4 L69.7,121.0 L75.0,126.5 L66.0,132.0 L58.0,131.0 L50.0,125.0 L42.0,131.0 L34.0,132.0 L25.0,126.5 L29.7,121.0 L22.3,113.4 L9.9,107.0 L11.7,105.7 L2.4,99.3 L4.7,98.1 L-0.9,91.7 L1.1,90.4 L-2.9,84.0 L0.8,82.8 L-1.1,76.3 L3.0,75.1 L2.9,68.7 L6.9,67.5 L7.9,61.0 L12.0,59.8 L14.0,53.4 L17.7,52.1 L20.3,45.7 L23.8,44.5 L25.8,38.1 L30.3,36.8 L32.5,30.4 L37.1,29.2 L39.5,22.7 L44.1,21.5 L46.2,15.1 L50.9,13.9 L60.8,0.0Z" fill="url(#leafGrad)" stroke="#1d4a17" stroke-opacity=".6" stroke-width=".8" stroke-linejoin="round"/>
+    <path d="M60.8,0.0 L66.1,13.9 L69.6,15.1 L70.4,21.5 L73.6,22.7 L75.1,29.2 L78.1,30.4 L79.9,36.8 L83.5,38.1 L84.8,44.5 L89.3,45.7 L89.9,52.1 L94.1,53.4 L94.7,59.8 L98.9,61.0 L98.9,67.5 L102.1,68.7 L101.9,75.1 L105.3,76.3 L102.8,82.8 L105.4,84.0 L101.0,90.4 L102.9,91.7 L96.1,98.1 L97.4,99.3 L88.1,105.7 L89.1,107.0 L77.2,113.4 L69.7,121.0 L75.0,126.5 L66.0,132.0 L58.0,131.0 L50.0,125.0 L42.0,131.0 L34.0,132.0 L25.0,126.5 L29.7,121.0 L22.3,113.4 L9.9,107.0 L11.7,105.7 L2.4,99.3 L4.7,98.1 L-0.9,91.7 L1.1,90.4 L-2.9,84.0 L0.8,82.8 L-1.1,76.3 L3.0,75.1 L2.9,68.7 L6.9,67.5 L7.9,61.0 L12.0,59.8 L14.0,53.4 L17.7,52.1 L20.3,45.7 L23.8,44.5 L25.8,38.1 L30.3,36.8 L32.5,30.4 L37.1,29.2 L39.5,22.7 L44.1,21.5 L46.2,15.1 L50.9,13.9 L60.8,0.0Z" fill="url(#leafLight)"/>
+    <path d="M50.3,105.8 Q71.0,102.8 96.4,89.5 M50.8,92.6 Q77.8,89.6 97.1,76.2 M51.5,79.4 Q79.7,76.4 92.2,63.0 M52.4,66.1 Q77.7,63.1 84.9,49.8 M53.6,52.9 Q73.8,49.9 77.3,36.5 M55.1,39.7 Q69.7,36.7 70.1,23.3 M56.7,26.5 Q65.9,23.5 63.7,10.1 M50,124 C70.0,118 82.0,92 95.0,69.3 M50.3,105.8 Q29.1,102.8 5.9,89.5 M50.8,92.6 Q23.8,89.6 7.5,76.2 M51.5,79.4 Q24.0,76.4 14.1,63.0 M52.4,66.1 Q27.9,63.1 23.0,49.8 M53.6,52.9 Q33.5,49.9 33.1,36.5 M55.1,39.7 Q40.1,36.7 43.9,23.3 M56.7,26.5 Q47.3,23.5 54.6,10.1 M50,124 C30.0,118 18.0,92 10.5,69.3" fill="none" stroke="#12350f" stroke-opacity=".22" stroke-width="1.4" stroke-linecap="round" transform="translate(1,1.2)"/>
+    <path d="M50.3,105.8 Q71.0,102.8 96.4,89.5 M50.8,92.6 Q77.8,89.6 97.1,76.2 M51.5,79.4 Q79.7,76.4 92.2,63.0 M52.4,66.1 Q77.7,63.1 84.9,49.8 M53.6,52.9 Q73.8,49.9 77.3,36.5 M55.1,39.7 Q69.7,36.7 70.1,23.3 M56.7,26.5 Q65.9,23.5 63.7,10.1 M50,124 C70.0,118 82.0,92 95.0,69.3 M50.3,105.8 Q29.1,102.8 5.9,89.5 M50.8,92.6 Q23.8,89.6 7.5,76.2 M51.5,79.4 Q24.0,76.4 14.1,63.0 M52.4,66.1 Q27.9,63.1 23.0,49.8 M53.6,52.9 Q33.5,49.9 33.1,36.5 M55.1,39.7 Q40.1,36.7 43.9,23.3 M56.7,26.5 Q47.3,23.5 54.6,10.1 M50,124 C30.0,118 18.0,92 10.5,69.3" fill="none" stroke="#d9f2ab" stroke-opacity=".55" stroke-width=".95" stroke-linecap="round"/>
+    <path d="M50,150 L50,128 L50.0,120.8 L50.1,115.5 L50.2,110.2 L50.3,105.0 L50.5,99.8 L50.7,94.5 L50.9,89.2 L51.2,84.0 L51.5,78.8 L51.9,73.5 L52.3,68.2 L52.7,63.0 L53.2,57.8 L53.7,52.5 L54.2,47.2 L54.8,42.0 L55.4,36.8 L56.1,31.5 L56.8,26.2 L57.5,21.0 L58.3,15.8 L59.1,10.5 L59.9,5.2 L60.8,0.0" fill="none" stroke="#12350f" stroke-opacity=".25" stroke-width="3.2" stroke-linecap="round" transform="translate(1,1)"/>
+    <path d="M50,150 L50,128 L50.0,120.8 L50.1,115.5 L50.2,110.2 L50.3,105.0 L50.5,99.8 L50.7,94.5 L50.9,89.2 L51.2,84.0 L51.5,78.8 L51.9,73.5 L52.3,68.2 L52.7,63.0 L53.2,57.8 L53.7,52.5 L54.2,47.2 L54.8,42.0 L55.4,36.8 L56.1,31.5 L56.8,26.2 L57.5,21.0 L58.3,15.8 L59.1,10.5 L59.9,5.2 L60.8,0.0" fill="none" stroke="#c9e79a" stroke-width="2.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="leaf-c" viewBox="0 0 100 150" overflow="visible">
+    <path d="M47.6,150 L52.4,150 L51.6,122 L48.4,122 Z" fill="#4f8a35"/>
+    <path d="M52.7,0.0 L59.3,13.9 L63.5,15.1 L64.5,21.5 L69.1,22.7 L70.4,29.2 L74.8,30.4 L76.8,36.8 L81.5,38.1 L83.3,44.5 L86.6,45.7 L89.5,52.1 L93.3,53.4 L94.6,59.8 L99.0,61.0 L98.2,67.5 L101.9,68.7 L99.9,75.1 L103.6,76.3 L99.6,82.8 L101.8,84.0 L97.3,90.4 L99.7,91.7 L92.9,98.1 L94.6,99.3 L86.3,105.7 L88.0,107.0 L76.8,113.4 L69.8,121.0 L75.0,126.5 L66.0,132.0 L58.0,131.0 L50.0,125.0 L42.0,131.0 L34.0,132.0 L25.0,126.5 L29.7,121.0 L22.6,113.4 L10.8,107.0 L13.2,105.7 L5.6,99.3 L7.0,98.1 L1.4,91.7 L3.4,90.4 L-1.1,84.0 L1.9,82.8 L-0.4,76.3 L2.2,75.1 L0.2,68.7 L4.1,67.5 L4.5,61.0 L7.6,59.8 L8.2,53.4 L12.5,52.1 L13.9,45.7 L18.6,44.5 L21.6,38.1 L25.4,36.8 L28.7,30.4 L32.3,29.2 L35.7,22.7 L38.9,21.5 L40.9,15.1 L44.9,13.9 L52.7,0.0Z" fill="url(#leafGrad)" stroke="#1d4a17" stroke-opacity=".6" stroke-width=".8" stroke-linejoin="round"/>
+    <path d="M52.7,0.0 L59.3,13.9 L63.5,15.1 L64.5,21.5 L69.1,22.7 L70.4,29.2 L74.8,30.4 L76.8,36.8 L81.5,38.1 L83.3,44.5 L86.6,45.7 L89.5,52.1 L93.3,53.4 L94.6,59.8 L99.0,61.0 L98.2,67.5 L101.9,68.7 L99.9,75.1 L103.6,76.3 L99.6,82.8 L101.8,84.0 L97.3,90.4 L99.7,91.7 L92.9,98.1 L94.6,99.3 L86.3,105.7 L88.0,107.0 L76.8,113.4 L69.8,121.0 L75.0,126.5 L66.0,132.0 L58.0,131.0 L50.0,125.0 L42.0,131.0 L34.0,132.0 L25.0,126.5 L29.7,121.0 L22.6,113.4 L10.8,107.0 L13.2,105.7 L5.6,99.3 L7.0,98.1 L1.4,91.7 L3.4,90.4 L-1.1,84.0 L1.9,82.8 L-0.4,76.3 L2.2,75.1 L0.2,68.7 L4.1,67.5 L4.5,61.0 L7.6,59.8 L8.2,53.4 L12.5,52.1 L13.9,45.7 L18.6,44.5 L21.6,38.1 L25.4,36.8 L28.7,30.4 L32.3,29.2 L35.7,22.7 L38.9,21.5 L40.9,15.1 L44.9,13.9 L52.7,0.0Z" fill="url(#leafLight)"/>
+    <path d="M50.1,105.8 Q69.9,102.8 93.0,89.5 M50.2,92.6 Q75.5,89.6 95.0,76.2 M50.4,79.4 Q77.7,76.4 91.8,63.0 M50.6,66.1 Q76.5,63.1 84.0,49.8 M50.9,52.9 Q72.4,49.9 74.0,36.5 M51.3,39.7 Q66.7,36.7 64.4,23.3 M51.7,26.5 Q60.8,23.5 56.6,10.1 M50,124 C70.0,118 82.0,92 94.0,69.3 M50.1,105.8 Q29.8,102.8 7.8,89.5 M50.2,92.6 Q24.9,89.6 6.9,76.2 M50.4,79.4 Q23.7,76.4 10.4,63.0 M50.6,66.1 Q25.3,63.1 18.0,49.8 M50.9,52.9 Q29.5,49.9 28.2,36.5 M51.3,39.7 Q35.6,36.7 38.9,23.3 M51.7,26.5 Q42.4,23.5 48.0,10.1 M50,124 C30.0,118 18.0,92 8.2,69.3" fill="none" stroke="#12350f" stroke-opacity=".22" stroke-width="1.4" stroke-linecap="round" transform="translate(1,1.2)"/>
+    <path d="M50.1,105.8 Q69.9,102.8 93.0,89.5 M50.2,92.6 Q75.5,89.6 95.0,76.2 M50.4,79.4 Q77.7,76.4 91.8,63.0 M50.6,66.1 Q76.5,63.1 84.0,49.8 M50.9,52.9 Q72.4,49.9 74.0,36.5 M51.3,39.7 Q66.7,36.7 64.4,23.3 M51.7,26.5 Q60.8,23.5 56.6,10.1 M50,124 C70.0,118 82.0,92 94.0,69.3 M50.1,105.8 Q29.8,102.8 7.8,89.5 M50.2,92.6 Q24.9,89.6 6.9,76.2 M50.4,79.4 Q23.7,76.4 10.4,63.0 M50.6,66.1 Q25.3,63.1 18.0,49.8 M50.9,52.9 Q29.5,49.9 28.2,36.5 M51.3,39.7 Q35.6,36.7 38.9,23.3 M51.7,26.5 Q42.4,23.5 48.0,10.1 M50,124 C30.0,118 18.0,92 8.2,69.3" fill="none" stroke="#d9f2ab" stroke-opacity=".55" stroke-width=".95" stroke-linecap="round"/>
+    <path d="M50,150 L50,128 L50.0,120.8 L50.0,115.5 L50.0,110.2 L50.1,105.0 L50.1,99.8 L50.2,94.5 L50.2,89.2 L50.3,84.0 L50.4,78.8 L50.5,73.5 L50.6,68.2 L50.7,63.0 L50.8,57.8 L50.9,52.5 L51.1,47.2 L51.2,42.0 L51.4,36.8 L51.5,31.5 L51.7,26.2 L51.9,21.0 L52.1,15.8 L52.3,10.5 L52.5,5.2 L52.7,0.0" fill="none" stroke="#12350f" stroke-opacity=".25" stroke-width="3.2" stroke-linecap="round" transform="translate(1,1)"/>
+    <path d="M50,150 L50,128 L50.0,120.8 L50.0,115.5 L50.0,110.2 L50.1,105.0 L50.1,99.8 L50.2,94.5 L50.2,89.2 L50.3,84.0 L50.4,78.8 L50.5,73.5 L50.6,68.2 L50.7,63.0 L50.8,57.8 L50.9,52.5 L51.1,47.2 L51.2,42.0 L51.4,36.8 L51.5,31.5 L51.7,26.2 L51.9,21.0 L52.1,15.8 L52.3,10.5 L52.5,5.2 L52.7,0.0" fill="none" stroke="#c9e79a" stroke-width="2.2" stroke-linecap="round"/>
+  </symbol>
+  </defs>
+</svg>
+
+    <div class="pot_shadow"></div>
+    <div class="pot_part pot_rim_top"></div>
+    <div class="pot_part pot_soil"></div>
+
+    <div class="bouquet">
+        <div class="flower" style="--bx:-9.3; --t:-23.5deg; --h:54.5; --d:0.8">
+            <div class="flower_sway">
+                <div class="flower_stem flower_stem-thin"></div>
+                <div class="sprig_puff"></div>
+            </div>
+        </div>
+        <div class="flower" style="--bx:9.6; --t:23.7deg; --h:55.7; --d:1.4">
+            <div class="flower_sway">
+                <div class="flower_stem flower_stem-thin"></div>
+                <div class="sprig_puff"></div>
+            </div>
+        </div>
+        <div class="flower" style="--bx:-4.8; --t:-10.4deg; --h:62.0; --d:2.0">
+            <div class="flower_sway">
+                <div class="flower_stem flower_stem-thin"></div>
+                <div class="sprig_puff"></div>
+            </div>
+        </div>
+        <div class="flower" style="--bx:5.1; --t:10.9deg; --h:63.1; --d:2.6">
+            <div class="flower_sway">
+                <div class="flower_stem flower_stem-thin"></div>
+                <div class="sprig_puff"></div>
+            </div>
+        </div>
+        <div class="flower" style="--bx:0.4; --t:0.8deg; --h:63.3; --s:0.5; --d:1.85; --n:0.4deg; --x:0.96">
+            <div class="flower_sway">
+                <div class="flower_stem"></div>
+                <div class="flower_leaf" style="--a:67.5deg; --L:20.0; --p:26%; --o:0.0s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r2"/></svg></div>
+                <div class="flower_leaf" style="--a:-66.8deg; --L:17.0; --p:46%; --o:0.25s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-l1"/></svg></div>
+                <div class="flower_leaf" style="--a:58.9deg; --L:14.0; --p:66%; --o:0.5s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r1"/></svg></div>
+                <div class="flower_head">
+                    <div class="flower_bud"></div>
+                    <div class="flower_face">
+                        <div class="flower_bloom">
+                            <div class="flower_sepal" style="--a:18.3deg;--o:0.0s"></div>
+                            <div class="flower_sepal" style="--a:55.7deg;--o:0.03s"></div>
+                            <div class="flower_sepal" style="--a:90.2deg;--o:0.06s"></div>
+                            <div class="flower_sepal" style="--a:126.8deg;--o:0.09s"></div>
+                            <div class="flower_sepal" style="--a:157.8deg;--o:0.12s"></div>
+                            <div class="flower_sepal" style="--a:197.3deg;--o:0.15s"></div>
+                            <div class="flower_sepal" style="--a:234.7deg;--o:0.18s"></div>
+                            <div class="flower_sepal" style="--a:274.4deg;--o:0.21s"></div>
+                            <div class="flower_sepal" style="--a:303.8deg;--o:0.24s"></div>
+                            <div class="flower_sepal" style="--a:342.9deg;--o:0.27s"></div>
+                            <div class="flower_petal" style="--a:-3.1deg;--l:1.06;--k:0.51deg;--o:0.0s"></div>
+                            <div class="flower_petal" style="--a:27.2deg;--l:0.99;--k:-3.38deg;--o:0.06s"></div>
+                            <div class="flower_petal" style="--a:45.2deg;--l:1.02;--k:-4.57deg;--o:0.12s"></div>
+                            <div class="flower_petal" style="--a:74.4deg;--l:1.0;--k:-2.06deg;--o:0.18s"></div>
+                            <div class="flower_petal" style="--a:93.1deg;--l:1.04;--k:-4.8deg;--o:0.24s"></div>
+                            <div class="flower_petal" style="--a:119.1deg;--l:0.99;--k:-5.59deg;--o:0.3s"></div>
+                            <div class="flower_petal" style="--a:145.1deg;--l:0.98;--k:-4.05deg;--o:0.36s"></div>
+                            <div class="flower_petal" style="--a:165.8deg;--l:0.92;--k:-3.33deg;--o:0.42s"></div>
+                            <div class="flower_petal" style="--a:193.9deg;--l:0.93;--k:5.34deg;--o:0.48s"></div>
+                            <div class="flower_petal" style="--a:215.6deg;--l:0.93;--k:-5.81deg;--o:0.54s"></div>
+                            <div class="flower_petal" style="--a:242.3deg;--l:1.0;--k:-5.56deg;--o:0.6s"></div>
+                            <div class="flower_petal" style="--a:262.1deg;--l:1.01;--k:3.06deg;--o:0.66s"></div>
+                            <div class="flower_petal" style="--a:287.7deg;--l:0.97;--k:-4.9deg;--o:0.72s"></div>
+                            <div class="flower_petal" style="--a:312.4deg;--l:1.02;--k:2.29deg;--o:0.78s"></div>
+                            <div class="flower_petal" style="--a:336.5deg;--l:0.96;--k:-4.8deg;--o:0.84s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:9.3deg;--l:0.85;--k:3.14deg;--o:0.4s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:37.2deg;--l:0.91;--k:-4.02deg;--o:0.45s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:60.9deg;--l:0.97;--k:-5.17deg;--o:0.5s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:87.7deg;--l:0.98;--k:2.95deg;--o:0.55s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:108.4deg;--l:0.91;--k:-2.41deg;--o:0.6s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:134.9deg;--l:0.94;--k:-5.38deg;--o:0.65s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:154.3deg;--l:0.85;--k:-4.33deg;--o:0.7s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:183.7deg;--l:0.96;--k:-0.83deg;--o:0.75s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:201.3deg;--l:0.95;--k:-1.95deg;--o:0.8s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:229.5deg;--l:0.87;--k:4.64deg;--o:0.85s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:255.7deg;--l:0.97;--k:5.86deg;--o:0.9s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:274.2deg;--l:0.9;--k:-5.72deg;--o:0.95s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:303.6deg;--l:0.96;--k:-1.18deg;--o:1.0s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:326.4deg;--l:0.85;--k:1.86deg;--o:1.05s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:350.0deg;--l:0.99;--k:-0.96deg;--o:1.1s"></div>
+                            <div class="flower_center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flower" style="--bx:2.8; --t:7.0deg; --h:54.2; --s:0.405; --d:1.04; --n:5.6deg; --x:0.94">
+            <div class="flower_sway">
+                <div class="flower_stem"></div>
+                <div class="flower_leaf" style="--a:67.5deg; --L:16.2; --p:26%; --o:0.0s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r1"/></svg></div>
+                <div class="flower_leaf" style="--a:-64.4deg; --L:13.8; --p:46%; --o:0.25s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-l2"/></svg></div>
+                <div class="flower_leaf" style="--a:60.2deg; --L:11.3; --p:66%; --o:0.5s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r1"/></svg></div>
+                <div class="flower_head">
+                    <div class="flower_bud"></div>
+                    <div class="flower_face">
+                        <div class="flower_bloom">
+                            <div class="flower_sepal" style="--a:15.3deg;--o:0.0s"></div>
+                            <div class="flower_sepal" style="--a:49.6deg;--o:0.03s"></div>
+                            <div class="flower_sepal" style="--a:93.9deg;--o:0.06s"></div>
+                            <div class="flower_sepal" style="--a:124.8deg;--o:0.09s"></div>
+                            <div class="flower_sepal" style="--a:157.2deg;--o:0.12s"></div>
+                            <div class="flower_sepal" style="--a:197.6deg;--o:0.15s"></div>
+                            <div class="flower_sepal" style="--a:233.1deg;--o:0.18s"></div>
+                            <div class="flower_sepal" style="--a:271.8deg;--o:0.21s"></div>
+                            <div class="flower_sepal" style="--a:305.1deg;--o:0.24s"></div>
+                            <div class="flower_sepal" style="--a:345.1deg;--o:0.27s"></div>
+                            <div class="flower_petal" style="--a:-1.8deg;--l:1.07;--k:-4.07deg;--o:0.0s"></div>
+                            <div class="flower_petal" style="--a:20.3deg;--l:1.06;--k:2.01deg;--o:0.06s"></div>
+                            <div class="flower_petal" style="--a:50.0deg;--l:1.06;--k:0.47deg;--o:0.12s"></div>
+                            <div class="flower_petal" style="--a:73.5deg;--l:0.98;--k:4.72deg;--o:0.18s"></div>
+                            <div class="flower_petal" style="--a:99.9deg;--l:0.94;--k:-1.55deg;--o:0.24s"></div>
+                            <div class="flower_petal" style="--a:121.0deg;--l:1.08;--k:-2.67deg;--o:0.3s"></div>
+                            <div class="flower_petal" style="--a:146.2deg;--l:0.92;--k:-5.56deg;--o:0.36s"></div>
+                            <div class="flower_petal" style="--a:170.3deg;--l:0.94;--k:3.15deg;--o:0.42s"></div>
+                            <div class="flower_petal" style="--a:192.5deg;--l:1.0;--k:-1.12deg;--o:0.48s"></div>
+                            <div class="flower_petal" style="--a:212.6deg;--l:0.95;--k:0.78deg;--o:0.54s"></div>
+                            <div class="flower_petal" style="--a:241.0deg;--l:1.04;--k:-3.84deg;--o:0.6s"></div>
+                            <div class="flower_petal" style="--a:264.1deg;--l:1.02;--k:-1.67deg;--o:0.66s"></div>
+                            <div class="flower_petal" style="--a:291.9deg;--l:1.02;--k:2.36deg;--o:0.72s"></div>
+                            <div class="flower_petal" style="--a:312.8deg;--l:0.93;--k:-4.56deg;--o:0.78s"></div>
+                            <div class="flower_petal" style="--a:338.0deg;--l:1.08;--k:-4.37deg;--o:0.84s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:13.5deg;--l:0.99;--k:-2.47deg;--o:0.4s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:39.2deg;--l:0.89;--k:3.54deg;--o:0.45s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:56.4deg;--l:0.86;--k:3.12deg;--o:0.5s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:80.8deg;--l:0.85;--k:-1.79deg;--o:0.55s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:105.3deg;--l:0.88;--k:5.6deg;--o:0.6s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:135.9deg;--l:0.96;--k:-3.33deg;--o:0.65s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:156.7deg;--l:0.99;--k:1.96deg;--o:0.7s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:180.2deg;--l:0.88;--k:0.73deg;--o:0.75s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:205.9deg;--l:0.92;--k:1.92deg;--o:0.8s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:231.7deg;--l:0.95;--k:-1.72deg;--o:0.85s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:255.9deg;--l:0.9;--k:5.07deg;--o:0.9s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:275.9deg;--l:0.9;--k:-3.48deg;--o:0.95s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:301.2deg;--l:0.87;--k:-2.21deg;--o:1.0s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:323.4deg;--l:0.86;--k:2.83deg;--o:1.05s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:347.8deg;--l:0.87;--k:5.17deg;--o:1.1s"></div>
+                            <div class="flower_center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flower" style="--bx:-2.4; --t:-6.1deg; --h:53.1; --s:0.405; --d:0.77; --n:-5.0deg; --x:0.98">
+            <div class="flower_sway">
+                <div class="flower_stem"></div>
+                <div class="flower_leaf" style="--a:-60.7deg; --L:16.2; --p:32%; --o:0.0s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-l1"/></svg></div>
+                <div class="flower_leaf" style="--a:62.4deg; --L:13.0; --p:58%; --o:0.25s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r2"/></svg></div>
+                <div class="flower_head">
+                    <div class="flower_bud"></div>
+                    <div class="flower_face">
+                        <div class="flower_bloom">
+                            <div class="flower_sepal" style="--a:18.8deg;--o:0.0s"></div>
+                            <div class="flower_sepal" style="--a:58.7deg;--o:0.03s"></div>
+                            <div class="flower_sepal" style="--a:90.4deg;--o:0.06s"></div>
+                            <div class="flower_sepal" style="--a:127.2deg;--o:0.09s"></div>
+                            <div class="flower_sepal" style="--a:161.3deg;--o:0.12s"></div>
+                            <div class="flower_sepal" style="--a:199.1deg;--o:0.15s"></div>
+                            <div class="flower_sepal" style="--a:238.2deg;--o:0.18s"></div>
+                            <div class="flower_sepal" style="--a:274.8deg;--o:0.21s"></div>
+                            <div class="flower_sepal" style="--a:307.6deg;--o:0.24s"></div>
+                            <div class="flower_sepal" style="--a:341.3deg;--o:0.27s"></div>
+                            <div class="flower_petal" style="--a:-3.5deg;--l:1.05;--k:-1.3deg;--o:0.0s"></div>
+                            <div class="flower_petal" style="--a:23.1deg;--l:0.93;--k:-5.59deg;--o:0.06s"></div>
+                            <div class="flower_petal" style="--a:47.1deg;--l:1.08;--k:2.89deg;--o:0.12s"></div>
+                            <div class="flower_petal" style="--a:73.7deg;--l:1.03;--k:-2.73deg;--o:0.18s"></div>
+                            <div class="flower_petal" style="--a:93.3deg;--l:1.02;--k:-5.24deg;--o:0.24s"></div>
+                            <div class="flower_petal" style="--a:120.7deg;--l:1.0;--k:0.51deg;--o:0.3s"></div>
+                            <div class="flower_petal" style="--a:141.0deg;--l:0.93;--k:-0.32deg;--o:0.36s"></div>
+                            <div class="flower_petal" style="--a:165.2deg;--l:1.02;--k:-2.29deg;--o:0.42s"></div>
+                            <div class="flower_petal" style="--a:193.0deg;--l:1.04;--k:1.28deg;--o:0.48s"></div>
+                            <div class="flower_petal" style="--a:216.2deg;--l:0.95;--k:-1.83deg;--o:0.54s"></div>
+                            <div class="flower_petal" style="--a:243.8deg;--l:0.96;--k:-2.59deg;--o:0.6s"></div>
+                            <div class="flower_petal" style="--a:263.9deg;--l:1.01;--k:3.49deg;--o:0.66s"></div>
+                            <div class="flower_petal" style="--a:286.4deg;--l:1.07;--k:-5.73deg;--o:0.72s"></div>
+                            <div class="flower_petal" style="--a:314.3deg;--l:1.01;--k:4.81deg;--o:0.78s"></div>
+                            <div class="flower_petal" style="--a:333.2deg;--l:1.03;--k:5.37deg;--o:0.84s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:13.3deg;--l:0.87;--k:5.05deg;--o:0.4s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:39.8deg;--l:0.87;--k:3.93deg;--o:0.45s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:56.6deg;--l:0.86;--k:3.54deg;--o:0.5s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:85.8deg;--l:0.99;--k:1.58deg;--o:0.55s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:108.1deg;--l:0.89;--k:0.87deg;--o:0.6s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:135.9deg;--l:0.95;--k:4.51deg;--o:0.65s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:153.6deg;--l:0.96;--k:2.78deg;--o:0.7s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:176.6deg;--l:0.97;--k:-3.89deg;--o:0.75s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:201.7deg;--l:0.86;--k:1.95deg;--o:0.8s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:225.1deg;--l:1.0;--k:-6.0deg;--o:0.85s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:254.5deg;--l:0.96;--k:0.83deg;--o:0.9s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:276.6deg;--l:0.97;--k:1.64deg;--o:0.95s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:297.1deg;--l:0.97;--k:-1.75deg;--o:1.0s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:324.7deg;--l:0.93;--k:4.85deg;--o:1.05s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:347.3deg;--l:0.98;--k:-5.02deg;--o:1.1s"></div>
+                            <div class="flower_center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flower" style="--bx:5.3; --t:14.9deg; --h:48.0; --s:0.365; --d:2.12; --n:7.2deg; --x:0.87">
+            <div class="flower_sway">
+                <div class="flower_stem"></div>
+                <div class="flower_leaf" style="--a:69.3deg; --L:14.6; --p:32%; --o:0.0s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r1"/></svg></div>
+                <div class="flower_leaf" style="--a:-60.9deg; --L:11.7; --p:58%; --o:0.25s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-l1"/></svg></div>
+                <div class="flower_head">
+                    <div class="flower_bud"></div>
+                    <div class="flower_face">
+                        <div class="flower_bloom">
+                            <div class="flower_sepal" style="--a:14.4deg;--o:0.0s"></div>
+                            <div class="flower_sepal" style="--a:50.4deg;--o:0.03s"></div>
+                            <div class="flower_sepal" style="--a:90.8deg;--o:0.06s"></div>
+                            <div class="flower_sepal" style="--a:130.8deg;--o:0.09s"></div>
+                            <div class="flower_sepal" style="--a:163.1deg;--o:0.12s"></div>
+                            <div class="flower_sepal" style="--a:197.3deg;--o:0.15s"></div>
+                            <div class="flower_sepal" style="--a:234.1deg;--o:0.18s"></div>
+                            <div class="flower_sepal" style="--a:273.1deg;--o:0.21s"></div>
+                            <div class="flower_sepal" style="--a:306.2deg;--o:0.24s"></div>
+                            <div class="flower_sepal" style="--a:342.4deg;--o:0.27s"></div>
+                            <div class="flower_petal" style="--a:0.8deg;--l:1.07;--k:3.6deg;--o:0.0s"></div>
+                            <div class="flower_petal" style="--a:26.7deg;--l:0.96;--k:1.2deg;--o:0.06s"></div>
+                            <div class="flower_petal" style="--a:50.6deg;--l:1.03;--k:5.42deg;--o:0.12s"></div>
+                            <div class="flower_petal" style="--a:75.3deg;--l:0.94;--k:0.1deg;--o:0.18s"></div>
+                            <div class="flower_petal" style="--a:94.9deg;--l:0.95;--k:0.01deg;--o:0.24s"></div>
+                            <div class="flower_petal" style="--a:123.9deg;--l:1.04;--k:-4.81deg;--o:0.3s"></div>
+                            <div class="flower_petal" style="--a:142.0deg;--l:0.98;--k:4.62deg;--o:0.36s"></div>
+                            <div class="flower_petal" style="--a:167.7deg;--l:0.95;--k:0.6deg;--o:0.42s"></div>
+                            <div class="flower_petal" style="--a:190.0deg;--l:0.93;--k:1.11deg;--o:0.48s"></div>
+                            <div class="flower_petal" style="--a:219.9deg;--l:1.04;--k:2.83deg;--o:0.54s"></div>
+                            <div class="flower_petal" style="--a:237.2deg;--l:1.01;--k:1.64deg;--o:0.6s"></div>
+                            <div class="flower_petal" style="--a:266.1deg;--l:0.99;--k:-5.36deg;--o:0.66s"></div>
+                            <div class="flower_petal" style="--a:291.4deg;--l:0.96;--k:2.86deg;--o:0.72s"></div>
+                            <div class="flower_petal" style="--a:311.7deg;--l:1.04;--k:-1.95deg;--o:0.78s"></div>
+                            <div class="flower_petal" style="--a:332.7deg;--l:0.99;--k:-0.24deg;--o:0.84s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:14.3deg;--l:0.91;--k:2.0deg;--o:0.4s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:35.0deg;--l:0.96;--k:-3.91deg;--o:0.45s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:63.0deg;--l:0.99;--k:-5.72deg;--o:0.5s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:86.9deg;--l:0.97;--k:2.32deg;--o:0.55s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:104.8deg;--l:0.96;--k:3.26deg;--o:0.6s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:133.0deg;--l:0.99;--k:5.36deg;--o:0.65s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:157.1deg;--l:0.99;--k:-4.27deg;--o:0.7s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:178.4deg;--l:0.93;--k:0.27deg;--o:0.75s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:207.6deg;--l:0.95;--k:1.46deg;--o:0.8s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:229.0deg;--l:0.99;--k:-1.19deg;--o:0.85s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:253.9deg;--l:0.94;--k:-1.17deg;--o:0.9s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:274.7deg;--l:0.87;--k:-5.87deg;--o:0.95s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:298.7deg;--l:0.9;--k:-5.03deg;--o:1.0s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:323.9deg;--l:0.9;--k:5.11deg;--o:1.05s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:350.2deg;--l:0.95;--k:4.16deg;--o:1.1s"></div>
+                            <div class="flower_center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flower" style="--bx:-0.3; --t:-0.7deg; --h:46.3; --s:0.365; --d:0.5; --n:0.1deg; --x:0.96">
+            <div class="flower_sway">
+                <div class="flower_stem"></div>
+                <div class="flower_leaf" style="--a:-59.6deg; --L:14.6; --p:26%; --o:0.0s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-l2"/></svg></div>
+                <div class="flower_leaf" style="--a:62.8deg; --L:12.4; --p:46%; --o:0.25s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r1"/></svg></div>
+                <div class="flower_leaf" style="--a:-65.6deg; --L:10.2; --p:66%; --o:0.5s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-l2"/></svg></div>
+                <div class="flower_head">
+                    <div class="flower_bud"></div>
+                    <div class="flower_face">
+                        <div class="flower_bloom">
+                            <div class="flower_sepal" style="--a:15.6deg;--o:0.0s"></div>
+                            <div class="flower_sepal" style="--a:58.3deg;--o:0.03s"></div>
+                            <div class="flower_sepal" style="--a:94.7deg;--o:0.06s"></div>
+                            <div class="flower_sepal" style="--a:127.9deg;--o:0.09s"></div>
+                            <div class="flower_sepal" style="--a:166.8deg;--o:0.12s"></div>
+                            <div class="flower_sepal" style="--a:202.8deg;--o:0.15s"></div>
+                            <div class="flower_sepal" style="--a:230.5deg;--o:0.18s"></div>
+                            <div class="flower_sepal" style="--a:272.3deg;--o:0.21s"></div>
+                            <div class="flower_sepal" style="--a:308.5deg;--o:0.24s"></div>
+                            <div class="flower_sepal" style="--a:344.3deg;--o:0.27s"></div>
+                            <div class="flower_petal" style="--a:-1.3deg;--l:1.01;--k:1.06deg;--o:0.0s"></div>
+                            <div class="flower_petal" style="--a:26.8deg;--l:0.93;--k:-1.5deg;--o:0.06s"></div>
+                            <div class="flower_petal" style="--a:46.5deg;--l:1.05;--k:-4.6deg;--o:0.12s"></div>
+                            <div class="flower_petal" style="--a:68.5deg;--l:0.94;--k:-4.61deg;--o:0.18s"></div>
+                            <div class="flower_petal" style="--a:95.5deg;--l:1.06;--k:-1.74deg;--o:0.24s"></div>
+                            <div class="flower_petal" style="--a:116.8deg;--l:1.03;--k:-2.01deg;--o:0.3s"></div>
+                            <div class="flower_petal" style="--a:144.6deg;--l:1.04;--k:-0.53deg;--o:0.36s"></div>
+                            <div class="flower_petal" style="--a:169.9deg;--l:1.02;--k:4.22deg;--o:0.42s"></div>
+                            <div class="flower_petal" style="--a:194.1deg;--l:1.06;--k:2.96deg;--o:0.48s"></div>
+                            <div class="flower_petal" style="--a:214.3deg;--l:1.0;--k:3.27deg;--o:0.54s"></div>
+                            <div class="flower_petal" style="--a:242.3deg;--l:1.04;--k:4.12deg;--o:0.6s"></div>
+                            <div class="flower_petal" style="--a:266.6deg;--l:1.01;--k:1.69deg;--o:0.66s"></div>
+                            <div class="flower_petal" style="--a:284.4deg;--l:1.0;--k:2.72deg;--o:0.72s"></div>
+                            <div class="flower_petal" style="--a:315.3deg;--l:1.06;--k:-0.73deg;--o:0.78s"></div>
+                            <div class="flower_petal" style="--a:333.8deg;--l:1.06;--k:1.89deg;--o:0.84s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:9.5deg;--l:0.86;--k:4.54deg;--o:0.4s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:36.6deg;--l:0.87;--k:5.88deg;--o:0.45s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:60.7deg;--l:0.96;--k:3.68deg;--o:0.5s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:82.0deg;--l:0.93;--k:-3.93deg;--o:0.55s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:108.9deg;--l:0.92;--k:3.48deg;--o:0.6s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:128.9deg;--l:0.88;--k:-1.36deg;--o:0.65s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:152.0deg;--l:0.91;--k:5.55deg;--o:0.7s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:182.9deg;--l:0.88;--k:3.98deg;--o:0.75s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:201.8deg;--l:0.89;--k:1.65deg;--o:0.8s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:226.3deg;--l:0.88;--k:-4.97deg;--o:0.85s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:249.4deg;--l:0.88;--k:4.94deg;--o:0.9s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:272.3deg;--l:0.93;--k:-3.45deg;--o:0.95s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:301.8deg;--l:0.85;--k:-1.54deg;--o:1.0s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:325.9deg;--l:0.85;--k:-1.06deg;--o:1.05s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:346.6deg;--l:0.92;--k:1.54deg;--o:1.1s"></div>
+                            <div class="flower_center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flower" style="--bx:-5.5; --t:-15.8deg; --h:47.2; --s:0.355; --d:2.39; --n:-8.0deg; --x:0.89">
+            <div class="flower_sway">
+                <div class="flower_stem"></div>
+                <div class="flower_leaf" style="--a:-68.3deg; --L:14.2; --p:32%; --o:0.0s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-l1"/></svg></div>
+                <div class="flower_leaf" style="--a:56.1deg; --L:11.4; --p:58%; --o:0.25s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r1"/></svg></div>
+                <div class="flower_head">
+                    <div class="flower_bud"></div>
+                    <div class="flower_face">
+                        <div class="flower_bloom">
+                            <div class="flower_sepal" style="--a:14.9deg;--o:0.0s"></div>
+                            <div class="flower_sepal" style="--a:49.8deg;--o:0.03s"></div>
+                            <div class="flower_sepal" style="--a:87.5deg;--o:0.06s"></div>
+                            <div class="flower_sepal" style="--a:122.4deg;--o:0.09s"></div>
+                            <div class="flower_sepal" style="--a:157.9deg;--o:0.12s"></div>
+                            <div class="flower_sepal" style="--a:201.5deg;--o:0.15s"></div>
+                            <div class="flower_sepal" style="--a:234.3deg;--o:0.18s"></div>
+                            <div class="flower_sepal" style="--a:270.0deg;--o:0.21s"></div>
+                            <div class="flower_sepal" style="--a:306.1deg;--o:0.24s"></div>
+                            <div class="flower_sepal" style="--a:345.1deg;--o:0.27s"></div>
+                            <div class="flower_petal" style="--a:-3.6deg;--l:0.93;--k:1.99deg;--o:0.0s"></div>
+                            <div class="flower_petal" style="--a:20.1deg;--l:1.0;--k:1.5deg;--o:0.06s"></div>
+                            <div class="flower_petal" style="--a:50.8deg;--l:0.92;--k:-1.18deg;--o:0.12s"></div>
+                            <div class="flower_petal" style="--a:70.5deg;--l:1.01;--k:-5.6deg;--o:0.18s"></div>
+                            <div class="flower_petal" style="--a:98.0deg;--l:1.07;--k:0.58deg;--o:0.24s"></div>
+                            <div class="flower_petal" style="--a:121.3deg;--l:1.05;--k:4.13deg;--o:0.3s"></div>
+                            <div class="flower_petal" style="--a:146.6deg;--l:1.0;--k:-4.95deg;--o:0.36s"></div>
+                            <div class="flower_petal" style="--a:170.4deg;--l:1.05;--k:2.41deg;--o:0.42s"></div>
+                            <div class="flower_petal" style="--a:190.5deg;--l:1.08;--k:1.47deg;--o:0.48s"></div>
+                            <div class="flower_petal" style="--a:214.5deg;--l:1.05;--k:-3.31deg;--o:0.54s"></div>
+                            <div class="flower_petal" style="--a:237.9deg;--l:1.06;--k:-5.34deg;--o:0.6s"></div>
+                            <div class="flower_petal" style="--a:267.0deg;--l:0.98;--k:0.86deg;--o:0.66s"></div>
+                            <div class="flower_petal" style="--a:289.5deg;--l:1.06;--k:-3.36deg;--o:0.72s"></div>
+                            <div class="flower_petal" style="--a:308.7deg;--l:1.0;--k:-3.31deg;--o:0.78s"></div>
+                            <div class="flower_petal" style="--a:335.4deg;--l:0.94;--k:-4.92deg;--o:0.84s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:12.5deg;--l:0.86;--k:-2.8deg;--o:0.4s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:35.1deg;--l:0.86;--k:3.67deg;--o:0.45s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:63.2deg;--l:0.85;--k:3.68deg;--o:0.5s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:81.4deg;--l:0.96;--k:-5.27deg;--o:0.55s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:110.0deg;--l:0.99;--k:-2.89deg;--o:0.6s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:129.3deg;--l:0.9;--k:4.32deg;--o:0.65s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:158.2deg;--l:0.87;--k:4.82deg;--o:0.7s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:181.9deg;--l:0.99;--k:5.67deg;--o:0.75s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:201.3deg;--l:0.96;--k:-5.71deg;--o:0.8s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:225.5deg;--l:0.93;--k:-3.2deg;--o:0.85s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:249.8deg;--l:0.9;--k:-0.49deg;--o:0.9s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:279.3deg;--l:0.94;--k:0.67deg;--o:0.95s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:301.8deg;--l:0.88;--k:3.64deg;--o:1.0s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:326.1deg;--l:0.97;--k:-0.6deg;--o:1.05s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:348.3deg;--l:0.86;--k:-0.5deg;--o:1.1s"></div>
+                            <div class="flower_center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flower" style="--bx:2.8; --t:9.1deg; --h:40.7; --s:0.335; --d:1.31; --n:5.1deg; --x:0.97">
+            <div class="flower_sway">
+                <div class="flower_stem"></div>
+                <div class="flower_leaf" style="--a:61.4deg; --L:13.4; --p:26%; --o:0.0s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r1"/></svg></div>
+                <div class="flower_leaf" style="--a:-69.7deg; --L:11.4; --p:46%; --o:0.25s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-l1"/></svg></div>
+                <div class="flower_leaf" style="--a:66.9deg; --L:9.4; --p:66%; --o:0.5s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r2"/></svg></div>
+                <div class="flower_head">
+                    <div class="flower_bud"></div>
+                    <div class="flower_face">
+                        <div class="flower_bloom">
+                            <div class="flower_sepal" style="--a:21.7deg;--o:0.0s"></div>
+                            <div class="flower_sepal" style="--a:50.9deg;--o:0.03s"></div>
+                            <div class="flower_sepal" style="--a:88.5deg;--o:0.06s"></div>
+                            <div class="flower_sepal" style="--a:127.7deg;--o:0.09s"></div>
+                            <div class="flower_sepal" style="--a:159.9deg;--o:0.12s"></div>
+                            <div class="flower_sepal" style="--a:201.7deg;--o:0.15s"></div>
+                            <div class="flower_sepal" style="--a:231.4deg;--o:0.18s"></div>
+                            <div class="flower_sepal" style="--a:265.9deg;--o:0.21s"></div>
+                            <div class="flower_sepal" style="--a:307.0deg;--o:0.24s"></div>
+                            <div class="flower_sepal" style="--a:346.6deg;--o:0.27s"></div>
+                            <div class="flower_petal" style="--a:-3.6deg;--l:1.07;--k:-5.05deg;--o:0.0s"></div>
+                            <div class="flower_petal" style="--a:20.6deg;--l:0.93;--k:-1.41deg;--o:0.06s"></div>
+                            <div class="flower_petal" style="--a:44.9deg;--l:0.96;--k:1.26deg;--o:0.12s"></div>
+                            <div class="flower_petal" style="--a:68.9deg;--l:0.98;--k:-4.45deg;--o:0.18s"></div>
+                            <div class="flower_petal" style="--a:94.0deg;--l:0.99;--k:2.41deg;--o:0.24s"></div>
+                            <div class="flower_petal" style="--a:122.0deg;--l:0.94;--k:2.52deg;--o:0.3s"></div>
+                            <div class="flower_petal" style="--a:147.3deg;--l:0.96;--k:1.1deg;--o:0.36s"></div>
+                            <div class="flower_petal" style="--a:169.8deg;--l:1.01;--k:-2.79deg;--o:0.42s"></div>
+                            <div class="flower_petal" style="--a:189.6deg;--l:1.06;--k:2.11deg;--o:0.48s"></div>
+                            <div class="flower_petal" style="--a:217.7deg;--l:1.02;--k:-1.27deg;--o:0.54s"></div>
+                            <div class="flower_petal" style="--a:242.0deg;--l:0.97;--k:4.41deg;--o:0.6s"></div>
+                            <div class="flower_petal" style="--a:263.1deg;--l:1.0;--k:1.11deg;--o:0.66s"></div>
+                            <div class="flower_petal" style="--a:290.4deg;--l:1.02;--k:3.74deg;--o:0.72s"></div>
+                            <div class="flower_petal" style="--a:308.0deg;--l:1.06;--k:-3.79deg;--o:0.78s"></div>
+                            <div class="flower_petal" style="--a:339.0deg;--l:0.94;--k:-0.2deg;--o:0.84s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:10.7deg;--l:0.9;--k:2.03deg;--o:0.4s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:38.0deg;--l:0.95;--k:3.25deg;--o:0.45s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:58.0deg;--l:0.9;--k:-3.48deg;--o:0.5s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:83.1deg;--l:0.95;--k:5.44deg;--o:0.55s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:107.1deg;--l:0.87;--k:2.46deg;--o:0.6s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:131.3deg;--l:0.95;--k:5.01deg;--o:0.65s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:155.1deg;--l:0.91;--k:0.23deg;--o:0.7s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:183.7deg;--l:0.96;--k:3.66deg;--o:0.75s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:207.3deg;--l:0.87;--k:5.97deg;--o:0.8s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:227.7deg;--l:0.86;--k:0.78deg;--o:0.85s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:249.2deg;--l:0.94;--k:-2.37deg;--o:0.9s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:272.9deg;--l:0.94;--k:-0.29deg;--o:0.95s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:302.8deg;--l:0.92;--k:3.75deg;--o:1.0s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:323.3deg;--l:0.92;--k:-5.95deg;--o:1.05s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:345.5deg;--l:0.92;--k:-0.01deg;--o:1.1s"></div>
+                            <div class="flower_center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flower" style="--bx:-2.6; --t:-8.7deg; --h:39.7; --s:0.325; --d:1.58; --n:-2.6deg; --x:0.91">
+            <div class="flower_sway">
+                <div class="flower_stem"></div>
+                <div class="flower_leaf" style="--a:-58.3deg; --L:13.0; --p:32%; --o:0.0s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-l1"/></svg></div>
+                <div class="flower_leaf" style="--a:61.7deg; --L:10.4; --p:58%; --o:0.25s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r1"/></svg></div>
+                <div class="flower_head">
+                    <div class="flower_bud"></div>
+                    <div class="flower_face">
+                        <div class="flower_bloom">
+                            <div class="flower_sepal" style="--a:20.6deg;--o:0.0s"></div>
+                            <div class="flower_sepal" style="--a:56.2deg;--o:0.03s"></div>
+                            <div class="flower_sepal" style="--a:87.7deg;--o:0.06s"></div>
+                            <div class="flower_sepal" style="--a:127.8deg;--o:0.09s"></div>
+                            <div class="flower_sepal" style="--a:163.6deg;--o:0.12s"></div>
+                            <div class="flower_sepal" style="--a:201.4deg;--o:0.15s"></div>
+                            <div class="flower_sepal" style="--a:234.1deg;--o:0.18s"></div>
+                            <div class="flower_sepal" style="--a:274.3deg;--o:0.21s"></div>
+                            <div class="flower_sepal" style="--a:308.2deg;--o:0.24s"></div>
+                            <div class="flower_sepal" style="--a:339.1deg;--o:0.27s"></div>
+                            <div class="flower_petal" style="--a:0.6deg;--l:0.95;--k:1.41deg;--o:0.0s"></div>
+                            <div class="flower_petal" style="--a:22.6deg;--l:1.08;--k:-1.89deg;--o:0.06s"></div>
+                            <div class="flower_petal" style="--a:50.3deg;--l:1.05;--k:-1.52deg;--o:0.12s"></div>
+                            <div class="flower_petal" style="--a:72.7deg;--l:0.96;--k:-1.5deg;--o:0.18s"></div>
+                            <div class="flower_petal" style="--a:95.5deg;--l:1.03;--k:0.1deg;--o:0.24s"></div>
+                            <div class="flower_petal" style="--a:117.3deg;--l:1.02;--k:0.19deg;--o:0.3s"></div>
+                            <div class="flower_petal" style="--a:144.2deg;--l:0.99;--k:4.4deg;--o:0.36s"></div>
+                            <div class="flower_petal" style="--a:169.2deg;--l:1.03;--k:0.02deg;--o:0.42s"></div>
+                            <div class="flower_petal" style="--a:191.2deg;--l:0.99;--k:2.15deg;--o:0.48s"></div>
+                            <div class="flower_petal" style="--a:215.5deg;--l:0.93;--k:-3.35deg;--o:0.54s"></div>
+                            <div class="flower_petal" style="--a:236.4deg;--l:0.93;--k:-1.69deg;--o:0.6s"></div>
+                            <div class="flower_petal" style="--a:263.0deg;--l:0.99;--k:-3.59deg;--o:0.66s"></div>
+                            <div class="flower_petal" style="--a:285.9deg;--l:0.99;--k:-2.51deg;--o:0.72s"></div>
+                            <div class="flower_petal" style="--a:310.1deg;--l:1.0;--k:3.16deg;--o:0.78s"></div>
+                            <div class="flower_petal" style="--a:332.5deg;--l:0.92;--k:-0.62deg;--o:0.84s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:15.2deg;--l:0.94;--k:-1.62deg;--o:0.4s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:39.8deg;--l:0.95;--k:3.91deg;--o:0.45s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:62.7deg;--l:0.86;--k:-3.66deg;--o:0.5s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:86.3deg;--l:0.91;--k:4.8deg;--o:0.55s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:104.6deg;--l:0.99;--k:1.45deg;--o:0.6s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:131.3deg;--l:0.97;--k:0.43deg;--o:0.65s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:155.7deg;--l:0.88;--k:3.41deg;--o:0.7s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:177.2deg;--l:0.9;--k:-4.94deg;--o:0.75s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:200.1deg;--l:0.89;--k:-5.47deg;--o:0.8s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:227.8deg;--l:0.9;--k:-5.78deg;--o:0.85s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:251.7deg;--l:0.89;--k:-3.22deg;--o:0.9s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:276.3deg;--l:0.9;--k:-5.35deg;--o:0.95s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:303.4deg;--l:1.0;--k:-3.16deg;--o:1.0s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:325.3deg;--l:0.94;--k:-3.02deg;--o:1.05s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:348.3deg;--l:0.89;--k:-2.7deg;--o:1.1s"></div>
+                            <div class="flower_center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flower" style="--bx:-8.7; --t:-27.8deg; --h:43.4; --s:0.335; --d:3.74; --n:-12.2deg; --x:0.74">
+            <div class="flower_sway">
+                <div class="flower_stem"></div>
+                <div class="flower_leaf" style="--a:-71.7deg; --L:13.4; --p:26%; --o:0.0s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-l1"/></svg></div>
+                <div class="flower_leaf" style="--a:61.3deg; --L:11.4; --p:46%; --o:0.25s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r2"/></svg></div>
+                <div class="flower_leaf" style="--a:-61.3deg; --L:9.4; --p:66%; --o:0.5s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-l1"/></svg></div>
+                <div class="flower_head">
+                    <div class="flower_bud"></div>
+                    <div class="flower_face">
+                        <div class="flower_bloom">
+                            <div class="flower_sepal" style="--a:16.2deg;--o:0.0s"></div>
+                            <div class="flower_sepal" style="--a:57.9deg;--o:0.03s"></div>
+                            <div class="flower_sepal" style="--a:89.5deg;--o:0.06s"></div>
+                            <div class="flower_sepal" style="--a:129.7deg;--o:0.09s"></div>
+                            <div class="flower_sepal" style="--a:158.4deg;--o:0.12s"></div>
+                            <div class="flower_sepal" style="--a:196.9deg;--o:0.15s"></div>
+                            <div class="flower_sepal" style="--a:232.4deg;--o:0.18s"></div>
+                            <div class="flower_sepal" style="--a:272.8deg;--o:0.21s"></div>
+                            <div class="flower_sepal" style="--a:309.6deg;--o:0.24s"></div>
+                            <div class="flower_sepal" style="--a:338.4deg;--o:0.27s"></div>
+                            <div class="flower_petal" style="--a:-0.7deg;--l:0.95;--k:-5.21deg;--o:0.0s"></div>
+                            <div class="flower_petal" style="--a:21.0deg;--l:0.93;--k:-2.38deg;--o:0.06s"></div>
+                            <div class="flower_petal" style="--a:47.5deg;--l:1.06;--k:1.82deg;--o:0.12s"></div>
+                            <div class="flower_petal" style="--a:74.1deg;--l:0.97;--k:-2.14deg;--o:0.18s"></div>
+                            <div class="flower_petal" style="--a:95.3deg;--l:0.96;--k:-5.76deg;--o:0.24s"></div>
+                            <div class="flower_petal" style="--a:118.2deg;--l:1.07;--k:-5.39deg;--o:0.3s"></div>
+                            <div class="flower_petal" style="--a:144.0deg;--l:0.96;--k:3.15deg;--o:0.36s"></div>
+                            <div class="flower_petal" style="--a:164.3deg;--l:1.0;--k:2.7deg;--o:0.42s"></div>
+                            <div class="flower_petal" style="--a:191.7deg;--l:0.94;--k:4.67deg;--o:0.48s"></div>
+                            <div class="flower_petal" style="--a:212.2deg;--l:1.07;--k:3.82deg;--o:0.54s"></div>
+                            <div class="flower_petal" style="--a:243.1deg;--l:1.06;--k:-1.56deg;--o:0.6s"></div>
+                            <div class="flower_petal" style="--a:265.0deg;--l:1.0;--k:1.02deg;--o:0.66s"></div>
+                            <div class="flower_petal" style="--a:287.0deg;--l:1.06;--k:-2.31deg;--o:0.72s"></div>
+                            <div class="flower_petal" style="--a:312.5deg;--l:0.93;--k:-5.3deg;--o:0.78s"></div>
+                            <div class="flower_petal" style="--a:339.1deg;--l:0.98;--k:-1.51deg;--o:0.84s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:15.9deg;--l:0.96;--k:-4.13deg;--o:0.4s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:36.3deg;--l:0.92;--k:1.25deg;--o:0.45s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:58.2deg;--l:0.89;--k:5.34deg;--o:0.5s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:84.8deg;--l:0.93;--k:2.3deg;--o:0.55s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:110.0deg;--l:0.88;--k:3.4deg;--o:0.6s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:131.9deg;--l:0.87;--k:-2.2deg;--o:0.65s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:159.9deg;--l:0.98;--k:4.84deg;--o:0.7s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:180.0deg;--l:0.95;--k:-1.24deg;--o:0.75s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:205.9deg;--l:0.93;--k:-1.71deg;--o:0.8s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:231.8deg;--l:0.93;--k:-5.52deg;--o:0.85s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:254.5deg;--l:0.86;--k:-2.64deg;--o:0.9s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:275.6deg;--l:0.88;--k:-0.61deg;--o:0.95s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:299.5deg;--l:0.93;--k:1.83deg;--o:1.0s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:325.5deg;--l:0.86;--k:-3.15deg;--o:1.05s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:344.9deg;--l:0.9;--k:-0.52deg;--o:1.1s"></div>
+                            <div class="flower_center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flower" style="--bx:8.2; --t:26.5deg; --h:42.7; --s:0.335; --d:3.47; --n:11.7deg; --x:0.75">
+            <div class="flower_sway">
+                <div class="flower_stem"></div>
+                <div class="flower_leaf" style="--a:58.5deg; --L:13.4; --p:32%; --o:0.0s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r2"/></svg></div>
+                <div class="flower_leaf" style="--a:-71.8deg; --L:10.7; --p:58%; --o:0.25s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-l2"/></svg></div>
+                <div class="flower_head">
+                    <div class="flower_bud"></div>
+                    <div class="flower_face">
+                        <div class="flower_bloom">
+                            <div class="flower_sepal" style="--a:13.6deg;--o:0.0s"></div>
+                            <div class="flower_sepal" style="--a:51.9deg;--o:0.03s"></div>
+                            <div class="flower_sepal" style="--a:89.4deg;--o:0.06s"></div>
+                            <div class="flower_sepal" style="--a:127.8deg;--o:0.09s"></div>
+                            <div class="flower_sepal" style="--a:166.7deg;--o:0.12s"></div>
+                            <div class="flower_sepal" style="--a:201.8deg;--o:0.15s"></div>
+                            <div class="flower_sepal" style="--a:229.6deg;--o:0.18s"></div>
+                            <div class="flower_sepal" style="--a:266.3deg;--o:0.21s"></div>
+                            <div class="flower_sepal" style="--a:307.5deg;--o:0.24s"></div>
+                            <div class="flower_sepal" style="--a:339.1deg;--o:0.27s"></div>
+                            <div class="flower_petal" style="--a:0.7deg;--l:1.0;--k:0.54deg;--o:0.0s"></div>
+                            <div class="flower_petal" style="--a:22.8deg;--l:1.07;--k:-2.48deg;--o:0.06s"></div>
+                            <div class="flower_petal" style="--a:46.9deg;--l:0.95;--k:-2.52deg;--o:0.12s"></div>
+                            <div class="flower_petal" style="--a:69.1deg;--l:1.02;--k:-5.75deg;--o:0.18s"></div>
+                            <div class="flower_petal" style="--a:93.9deg;--l:1.05;--k:4.22deg;--o:0.24s"></div>
+                            <div class="flower_petal" style="--a:118.7deg;--l:1.04;--k:3.72deg;--o:0.3s"></div>
+                            <div class="flower_petal" style="--a:145.2deg;--l:1.02;--k:3.05deg;--o:0.36s"></div>
+                            <div class="flower_petal" style="--a:166.6deg;--l:0.97;--k:-2.92deg;--o:0.42s"></div>
+                            <div class="flower_petal" style="--a:189.8deg;--l:1.0;--k:0.47deg;--o:0.48s"></div>
+                            <div class="flower_petal" style="--a:213.5deg;--l:0.93;--k:-5.7deg;--o:0.54s"></div>
+                            <div class="flower_petal" style="--a:237.7deg;--l:0.94;--k:1.45deg;--o:0.6s"></div>
+                            <div class="flower_petal" style="--a:266.5deg;--l:1.01;--k:1.73deg;--o:0.66s"></div>
+                            <div class="flower_petal" style="--a:287.4deg;--l:0.93;--k:2.97deg;--o:0.72s"></div>
+                            <div class="flower_petal" style="--a:314.1deg;--l:0.94;--k:-2.27deg;--o:0.78s"></div>
+                            <div class="flower_petal" style="--a:337.5deg;--l:1.03;--k:-4.03deg;--o:0.84s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:11.1deg;--l:0.91;--k:0.55deg;--o:0.4s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:38.6deg;--l:0.87;--k:-1.49deg;--o:0.45s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:63.4deg;--l:0.88;--k:-3.88deg;--o:0.5s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:86.3deg;--l:0.94;--k:-0.29deg;--o:0.55s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:107.7deg;--l:0.86;--k:1.69deg;--o:0.6s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:130.1deg;--l:0.92;--k:5.15deg;--o:0.65s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:156.0deg;--l:0.91;--k:-1.77deg;--o:0.7s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:178.3deg;--l:0.94;--k:2.6deg;--o:0.75s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:200.9deg;--l:0.85;--k:-1.26deg;--o:0.8s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:225.3deg;--l:0.94;--k:-4.07deg;--o:0.85s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:252.0deg;--l:0.92;--k:5.68deg;--o:0.9s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:274.6deg;--l:0.89;--k:-1.95deg;--o:0.95s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:301.3deg;--l:0.89;--k:-3.1deg;--o:1.0s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:325.7deg;--l:0.93;--k:-5.14deg;--o:1.05s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:350.8deg;--l:0.87;--k:-2.44deg;--o:1.1s"></div>
+                            <div class="flower_center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flower" style="--bx:10; --t:37.6deg; --h:39.7; --s:0.31; --d:4.28; --n:14.2deg; --x:0.74">
+            <div class="flower_sway">
+                <div class="flower_stem"></div>
+                <div class="flower_leaf" style="--a:58.4deg; --L:12.4; --p:26%; --o:0.0s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r1"/></svg></div>
+                <div class="flower_leaf" style="--a:-59.5deg; --L:10.5; --p:46%; --o:0.25s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-l2"/></svg></div>
+                <div class="flower_leaf" style="--a:67.2deg; --L:8.7; --p:66%; --o:0.5s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r1"/></svg></div>
+                <div class="flower_head">
+                    <div class="flower_bud"></div>
+                    <div class="flower_face">
+                        <div class="flower_bloom">
+                            <div class="flower_sepal" style="--a:13.1deg;--o:0.0s"></div>
+                            <div class="flower_sepal" style="--a:51.0deg;--o:0.03s"></div>
+                            <div class="flower_sepal" style="--a:91.8deg;--o:0.06s"></div>
+                            <div class="flower_sepal" style="--a:126.0deg;--o:0.09s"></div>
+                            <div class="flower_sepal" style="--a:157.4deg;--o:0.12s"></div>
+                            <div class="flower_sepal" style="--a:194.4deg;--o:0.15s"></div>
+                            <div class="flower_sepal" style="--a:232.3deg;--o:0.18s"></div>
+                            <div class="flower_sepal" style="--a:266.5deg;--o:0.21s"></div>
+                            <div class="flower_sepal" style="--a:308.1deg;--o:0.24s"></div>
+                            <div class="flower_sepal" style="--a:346.0deg;--o:0.27s"></div>
+                            <div class="flower_petal" style="--a:3.3deg;--l:1.05;--k:4.04deg;--o:0.0s"></div>
+                            <div class="flower_petal" style="--a:25.2deg;--l:1.02;--k:2.78deg;--o:0.06s"></div>
+                            <div class="flower_petal" style="--a:50.4deg;--l:0.97;--k:-3.43deg;--o:0.12s"></div>
+                            <div class="flower_petal" style="--a:69.2deg;--l:1.04;--k:-2.04deg;--o:0.18s"></div>
+                            <div class="flower_petal" style="--a:94.2deg;--l:1.01;--k:-0.87deg;--o:0.24s"></div>
+                            <div class="flower_petal" style="--a:118.7deg;--l:0.95;--k:4.27deg;--o:0.3s"></div>
+                            <div class="flower_petal" style="--a:145.8deg;--l:1.07;--k:4.38deg;--o:0.36s"></div>
+                            <div class="flower_petal" style="--a:168.1deg;--l:1.0;--k:-2.54deg;--o:0.42s"></div>
+                            <div class="flower_petal" style="--a:191.9deg;--l:0.98;--k:1.8deg;--o:0.48s"></div>
+                            <div class="flower_petal" style="--a:216.3deg;--l:0.97;--k:1.03deg;--o:0.54s"></div>
+                            <div class="flower_petal" style="--a:242.9deg;--l:1.05;--k:2.55deg;--o:0.6s"></div>
+                            <div class="flower_petal" style="--a:263.1deg;--l:0.97;--k:5.64deg;--o:0.66s"></div>
+                            <div class="flower_petal" style="--a:287.4deg;--l:0.99;--k:5.38deg;--o:0.72s"></div>
+                            <div class="flower_petal" style="--a:308.2deg;--l:0.92;--k:4.08deg;--o:0.78s"></div>
+                            <div class="flower_petal" style="--a:338.9deg;--l:1.03;--k:-5.68deg;--o:0.84s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:12.9deg;--l:0.86;--k:1.01deg;--o:0.4s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:34.9deg;--l:0.88;--k:-1.85deg;--o:0.45s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:57.0deg;--l:1.0;--k:-0.04deg;--o:0.5s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:80.0deg;--l:0.93;--k:4.58deg;--o:0.55s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:111.9deg;--l:0.88;--k:-3.08deg;--o:0.6s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:128.2deg;--l:0.86;--k:-5.68deg;--o:0.65s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:157.4deg;--l:0.99;--k:-5.81deg;--o:0.7s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:180.7deg;--l:0.92;--k:-5.29deg;--o:0.75s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:202.1deg;--l:0.91;--k:-2.99deg;--o:0.8s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:228.5deg;--l:0.86;--k:3.29deg;--o:0.85s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:248.8deg;--l:0.94;--k:0.03deg;--o:0.9s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:278.9deg;--l:1.0;--k:1.24deg;--o:0.95s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:302.2deg;--l:0.97;--k:0.91deg;--o:1.0s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:324.5deg;--l:0.91;--k:3.86deg;--o:1.05s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:350.4deg;--l:0.98;--k:-4.81deg;--o:1.1s"></div>
+                            <div class="flower_center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flower" style="--bx:-10.0; --t:-36.6deg; --h:38.9; --s:0.31; --d:4.01; --n:-11.9deg; --x:0.75">
+            <div class="flower_sway">
+                <div class="flower_stem"></div>
+                <div class="flower_leaf" style="--a:-63.9deg; --L:12.4; --p:26%; --o:0.0s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-l1"/></svg></div>
+                <div class="flower_leaf" style="--a:70.5deg; --L:10.5; --p:46%; --o:0.25s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r1"/></svg></div>
+                <div class="flower_leaf" style="--a:-58.0deg; --L:8.7; --p:66%; --o:0.5s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-l1"/></svg></div>
+                <div class="flower_head">
+                    <div class="flower_bud"></div>
+                    <div class="flower_face">
+                        <div class="flower_bloom">
+                            <div class="flower_sepal" style="--a:13.8deg;--o:0.0s"></div>
+                            <div class="flower_sepal" style="--a:55.8deg;--o:0.03s"></div>
+                            <div class="flower_sepal" style="--a:89.0deg;--o:0.06s"></div>
+                            <div class="flower_sepal" style="--a:124.2deg;--o:0.09s"></div>
+                            <div class="flower_sepal" style="--a:161.9deg;--o:0.12s"></div>
+                            <div class="flower_sepal" style="--a:196.0deg;--o:0.15s"></div>
+                            <div class="flower_sepal" style="--a:236.4deg;--o:0.18s"></div>
+                            <div class="flower_sepal" style="--a:269.4deg;--o:0.21s"></div>
+                            <div class="flower_sepal" style="--a:303.3deg;--o:0.24s"></div>
+                            <div class="flower_sepal" style="--a:340.0deg;--o:0.27s"></div>
+                            <div class="flower_petal" style="--a:2.4deg;--l:1.01;--k:2.3deg;--o:0.0s"></div>
+                            <div class="flower_petal" style="--a:22.8deg;--l:0.98;--k:5.53deg;--o:0.06s"></div>
+                            <div class="flower_petal" style="--a:51.0deg;--l:0.96;--k:-2.04deg;--o:0.12s"></div>
+                            <div class="flower_petal" style="--a:75.2deg;--l:0.92;--k:-0.46deg;--o:0.18s"></div>
+                            <div class="flower_petal" style="--a:95.6deg;--l:0.99;--k:1.66deg;--o:0.24s"></div>
+                            <div class="flower_petal" style="--a:123.4deg;--l:1.07;--k:0.03deg;--o:0.3s"></div>
+                            <div class="flower_petal" style="--a:140.0deg;--l:1.0;--k:-1.81deg;--o:0.36s"></div>
+                            <div class="flower_petal" style="--a:168.6deg;--l:0.99;--k:0.32deg;--o:0.42s"></div>
+                            <div class="flower_petal" style="--a:194.9deg;--l:0.99;--k:-0.6deg;--o:0.48s"></div>
+                            <div class="flower_petal" style="--a:216.9deg;--l:0.99;--k:-0.63deg;--o:0.54s"></div>
+                            <div class="flower_petal" style="--a:239.7deg;--l:0.97;--k:-0.28deg;--o:0.6s"></div>
+                            <div class="flower_petal" style="--a:263.5deg;--l:1.02;--k:-4.22deg;--o:0.66s"></div>
+                            <div class="flower_petal" style="--a:289.7deg;--l:0.94;--k:4.64deg;--o:0.72s"></div>
+                            <div class="flower_petal" style="--a:308.6deg;--l:1.07;--k:-0.23deg;--o:0.78s"></div>
+                            <div class="flower_petal" style="--a:336.8deg;--l:1.05;--k:-4.36deg;--o:0.84s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:12.7deg;--l:0.95;--k:1.56deg;--o:0.4s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:34.0deg;--l:0.93;--k:-4.37deg;--o:0.45s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:57.2deg;--l:0.94;--k:-0.08deg;--o:0.5s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:80.2deg;--l:0.97;--k:-0.86deg;--o:0.55s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:104.8deg;--l:0.85;--k:-3.33deg;--o:0.6s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:130.4deg;--l:0.93;--k:2.36deg;--o:0.65s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:154.2deg;--l:0.86;--k:0.04deg;--o:0.7s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:183.9deg;--l:0.88;--k:-3.68deg;--o:0.75s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:203.1deg;--l:0.93;--k:-4.15deg;--o:0.8s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:224.8deg;--l:0.86;--k:-2.78deg;--o:0.85s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:250.7deg;--l:0.89;--k:-2.95deg;--o:0.9s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:277.8deg;--l:0.88;--k:5.02deg;--o:0.95s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:297.0deg;--l:0.9;--k:3.24deg;--o:1.0s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:325.9deg;--l:0.89;--k:3.45deg;--o:1.05s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:350.2deg;--l:0.92;--k:3.93deg;--o:1.1s"></div>
+                            <div class="flower_center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flower" style="--bx:-5.0; --t:-21.6deg; --h:31.5; --s:0.32; --d:2.93; --n:-4.9deg; --x:0.9">
+            <div class="flower_sway">
+                <div class="flower_stem"></div>
+                <div class="flower_leaf" style="--a:-68.7deg; --L:12.8; --p:32%; --o:0.0s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-l1"/></svg></div>
+                <div class="flower_leaf" style="--a:59.1deg; --L:10.2; --p:58%; --o:0.25s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r2"/></svg></div>
+                <div class="flower_head">
+                    <div class="flower_bud"></div>
+                    <div class="flower_face">
+                        <div class="flower_bloom">
+                            <div class="flower_sepal" style="--a:21.3deg;--o:0.0s"></div>
+                            <div class="flower_sepal" style="--a:52.2deg;--o:0.03s"></div>
+                            <div class="flower_sepal" style="--a:92.6deg;--o:0.06s"></div>
+                            <div class="flower_sepal" style="--a:121.2deg;--o:0.09s"></div>
+                            <div class="flower_sepal" style="--a:162.0deg;--o:0.12s"></div>
+                            <div class="flower_sepal" style="--a:196.1deg;--o:0.15s"></div>
+                            <div class="flower_sepal" style="--a:232.0deg;--o:0.18s"></div>
+                            <div class="flower_sepal" style="--a:274.9deg;--o:0.21s"></div>
+                            <div class="flower_sepal" style="--a:301.0deg;--o:0.24s"></div>
+                            <div class="flower_sepal" style="--a:346.6deg;--o:0.27s"></div>
+                            <div class="flower_petal" style="--a:1.4deg;--l:1.08;--k:-1.13deg;--o:0.0s"></div>
+                            <div class="flower_petal" style="--a:27.2deg;--l:1.01;--k:0.91deg;--o:0.06s"></div>
+                            <div class="flower_petal" style="--a:49.0deg;--l:0.96;--k:1.26deg;--o:0.12s"></div>
+                            <div class="flower_petal" style="--a:69.4deg;--l:0.93;--k:2.65deg;--o:0.18s"></div>
+                            <div class="flower_petal" style="--a:92.2deg;--l:1.07;--k:-3.28deg;--o:0.24s"></div>
+                            <div class="flower_petal" style="--a:123.3deg;--l:0.97;--k:2.59deg;--o:0.3s"></div>
+                            <div class="flower_petal" style="--a:142.7deg;--l:1.03;--k:-3.83deg;--o:0.36s"></div>
+                            <div class="flower_petal" style="--a:165.8deg;--l:0.96;--k:5.79deg;--o:0.42s"></div>
+                            <div class="flower_petal" style="--a:195.2deg;--l:0.98;--k:5.49deg;--o:0.48s"></div>
+                            <div class="flower_petal" style="--a:219.5deg;--l:0.94;--k:1.43deg;--o:0.54s"></div>
+                            <div class="flower_petal" style="--a:237.7deg;--l:0.98;--k:-2.34deg;--o:0.6s"></div>
+                            <div class="flower_petal" style="--a:261.8deg;--l:1.01;--k:-3.39deg;--o:0.66s"></div>
+                            <div class="flower_petal" style="--a:286.6deg;--l:0.94;--k:-2.79deg;--o:0.72s"></div>
+                            <div class="flower_petal" style="--a:314.2deg;--l:0.97;--k:5.63deg;--o:0.78s"></div>
+                            <div class="flower_petal" style="--a:332.9deg;--l:0.92;--k:-3.01deg;--o:0.84s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:12.1deg;--l:0.9;--k:-1.2deg;--o:0.4s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:38.0deg;--l:0.95;--k:-3.1deg;--o:0.45s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:63.0deg;--l:0.9;--k:0.85deg;--o:0.5s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:82.9deg;--l:0.96;--k:0.94deg;--o:0.55s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:108.0deg;--l:0.88;--k:-5.08deg;--o:0.6s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:130.1deg;--l:0.98;--k:5.1deg;--o:0.65s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:155.2deg;--l:0.86;--k:-3.61deg;--o:0.7s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:183.5deg;--l:0.87;--k:-1.0deg;--o:0.75s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:200.6deg;--l:0.92;--k:-1.86deg;--o:0.8s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:231.9deg;--l:1.0;--k:0.04deg;--o:0.85s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:254.7deg;--l:0.95;--k:-0.45deg;--o:0.9s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:278.2deg;--l:0.86;--k:-3.98deg;--o:0.95s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:302.6deg;--l:0.93;--k:2.2deg;--o:1.0s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:324.8deg;--l:0.98;--k:-2.98deg;--o:1.05s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:345.4deg;--l:0.89;--k:4.42deg;--o:1.1s"></div>
+                            <div class="flower_center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flower" style="--bx:5.3; --t:23.4deg; --h:31.2; --s:0.31; --d:3.2; --n:7.9deg; --x:0.88">
+            <div class="flower_sway">
+                <div class="flower_stem"></div>
+                <div class="flower_leaf" style="--a:61.5deg; --L:12.4; --p:32%; --o:0.0s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r2"/></svg></div>
+                <div class="flower_leaf" style="--a:-68.6deg; --L:9.9; --p:58%; --o:0.25s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-l1"/></svg></div>
+                <div class="flower_head">
+                    <div class="flower_bud"></div>
+                    <div class="flower_face">
+                        <div class="flower_bloom">
+                            <div class="flower_sepal" style="--a:17.7deg;--o:0.0s"></div>
+                            <div class="flower_sepal" style="--a:53.5deg;--o:0.03s"></div>
+                            <div class="flower_sepal" style="--a:87.1deg;--o:0.06s"></div>
+                            <div class="flower_sepal" style="--a:126.7deg;--o:0.09s"></div>
+                            <div class="flower_sepal" style="--a:165.6deg;--o:0.12s"></div>
+                            <div class="flower_sepal" style="--a:195.6deg;--o:0.15s"></div>
+                            <div class="flower_sepal" style="--a:233.2deg;--o:0.18s"></div>
+                            <div class="flower_sepal" style="--a:268.7deg;--o:0.21s"></div>
+                            <div class="flower_sepal" style="--a:304.0deg;--o:0.24s"></div>
+                            <div class="flower_sepal" style="--a:346.3deg;--o:0.27s"></div>
+                            <div class="flower_petal" style="--a:1.8deg;--l:0.93;--k:0.2deg;--o:0.0s"></div>
+                            <div class="flower_petal" style="--a:22.8deg;--l:0.98;--k:-4.68deg;--o:0.06s"></div>
+                            <div class="flower_petal" style="--a:48.8deg;--l:0.98;--k:2.13deg;--o:0.12s"></div>
+                            <div class="flower_petal" style="--a:69.0deg;--l:1.0;--k:-0.68deg;--o:0.18s"></div>
+                            <div class="flower_petal" style="--a:97.1deg;--l:0.93;--k:3.45deg;--o:0.24s"></div>
+                            <div class="flower_petal" style="--a:120.2deg;--l:0.96;--k:-4.0deg;--o:0.3s"></div>
+                            <div class="flower_petal" style="--a:146.5deg;--l:0.92;--k:1.04deg;--o:0.36s"></div>
+                            <div class="flower_petal" style="--a:166.5deg;--l:0.97;--k:5.6deg;--o:0.42s"></div>
+                            <div class="flower_petal" style="--a:189.1deg;--l:0.95;--k:-5.86deg;--o:0.48s"></div>
+                            <div class="flower_petal" style="--a:214.9deg;--l:0.93;--k:-5.47deg;--o:0.54s"></div>
+                            <div class="flower_petal" style="--a:241.5deg;--l:1.07;--k:-3.98deg;--o:0.6s"></div>
+                            <div class="flower_petal" style="--a:264.8deg;--l:1.07;--k:-3.88deg;--o:0.66s"></div>
+                            <div class="flower_petal" style="--a:285.2deg;--l:1.0;--k:-5.38deg;--o:0.72s"></div>
+                            <div class="flower_petal" style="--a:312.6deg;--l:1.05;--k:4.56deg;--o:0.78s"></div>
+                            <div class="flower_petal" style="--a:332.9deg;--l:1.01;--k:0.05deg;--o:0.84s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:11.6deg;--l:0.88;--k:1.27deg;--o:0.4s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:33.2deg;--l:0.95;--k:-4.93deg;--o:0.45s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:56.0deg;--l:0.98;--k:-1.96deg;--o:0.5s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:83.3deg;--l:0.93;--k:-0.25deg;--o:0.55s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:104.1deg;--l:0.97;--k:5.74deg;--o:0.6s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:130.4deg;--l:0.89;--k:-2.66deg;--o:0.65s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:157.3deg;--l:0.93;--k:0.71deg;--o:0.7s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:180.9deg;--l:0.89;--k:0.24deg;--o:0.75s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:204.3deg;--l:0.94;--k:1.68deg;--o:0.8s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:231.8deg;--l:0.87;--k:0.13deg;--o:0.85s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:252.7deg;--l:0.87;--k:-1.55deg;--o:0.9s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:274.0deg;--l:0.93;--k:2.43deg;--o:0.95s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:298.1deg;--l:0.92;--k:-3.52deg;--o:1.0s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:323.3deg;--l:1.0;--k:4.65deg;--o:1.05s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:346.9deg;--l:0.9;--k:-3.82deg;--o:1.1s"></div>
+                            <div class="flower_center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flower" style="--bx:0.4; --t:2.0deg; --h:27.1; --s:0.31; --d:2.66; --n:-1.3deg; --x:1">
+            <div class="flower_sway">
+                <div class="flower_stem"></div>
+                <div class="flower_leaf" style="--a:63.2deg; --L:12.4; --p:26%; --o:0.0s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r2"/></svg></div>
+                <div class="flower_leaf" style="--a:-60.5deg; --L:10.5; --p:46%; --o:0.25s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-l2"/></svg></div>
+                <div class="flower_leaf" style="--a:69.2deg; --L:8.7; --p:66%; --o:0.5s"><svg class="flower_leaf_art" viewBox="0 0 100 150"><use href="#leaf-r2"/></svg></div>
+                <div class="flower_head">
+                    <div class="flower_bud"></div>
+                    <div class="flower_face">
+                        <div class="flower_bloom">
+                            <div class="flower_sepal" style="--a:13.6deg;--o:0.0s"></div>
+                            <div class="flower_sepal" style="--a:56.9deg;--o:0.03s"></div>
+                            <div class="flower_sepal" style="--a:86.0deg;--o:0.06s"></div>
+                            <div class="flower_sepal" style="--a:126.8deg;--o:0.09s"></div>
+                            <div class="flower_sepal" style="--a:165.8deg;--o:0.12s"></div>
+                            <div class="flower_sepal" style="--a:197.2deg;--o:0.15s"></div>
+                            <div class="flower_sepal" style="--a:234.7deg;--o:0.18s"></div>
+                            <div class="flower_sepal" style="--a:266.4deg;--o:0.21s"></div>
+                            <div class="flower_sepal" style="--a:305.4deg;--o:0.24s"></div>
+                            <div class="flower_sepal" style="--a:338.2deg;--o:0.27s"></div>
+                            <div class="flower_petal" style="--a:0.9deg;--l:1.06;--k:-0.91deg;--o:0.0s"></div>
+                            <div class="flower_petal" style="--a:26.7deg;--l:1.07;--k:1.63deg;--o:0.06s"></div>
+                            <div class="flower_petal" style="--a:45.5deg;--l:0.95;--k:0.74deg;--o:0.12s"></div>
+                            <div class="flower_petal" style="--a:73.7deg;--l:0.95;--k:-5.03deg;--o:0.18s"></div>
+                            <div class="flower_petal" style="--a:99.8deg;--l:1.06;--k:-5.13deg;--o:0.24s"></div>
+                            <div class="flower_petal" style="--a:120.4deg;--l:1.01;--k:-5.15deg;--o:0.3s"></div>
+                            <div class="flower_petal" style="--a:143.6deg;--l:1.07;--k:-0.22deg;--o:0.36s"></div>
+                            <div class="flower_petal" style="--a:170.8deg;--l:1.05;--k:-5.79deg;--o:0.42s"></div>
+                            <div class="flower_petal" style="--a:191.4deg;--l:1.03;--k:-4.7deg;--o:0.48s"></div>
+                            <div class="flower_petal" style="--a:219.6deg;--l:1.06;--k:-0.82deg;--o:0.54s"></div>
+                            <div class="flower_petal" style="--a:241.8deg;--l:1.05;--k:-5.78deg;--o:0.6s"></div>
+                            <div class="flower_petal" style="--a:264.8deg;--l:1.07;--k:-5.69deg;--o:0.66s"></div>
+                            <div class="flower_petal" style="--a:284.1deg;--l:1.07;--k:0.01deg;--o:0.72s"></div>
+                            <div class="flower_petal" style="--a:310.8deg;--l:0.99;--k:-1.88deg;--o:0.78s"></div>
+                            <div class="flower_petal" style="--a:338.1deg;--l:0.99;--k:2.31deg;--o:0.84s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:12.7deg;--l:0.96;--k:-2.1deg;--o:0.4s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:32.9deg;--l:0.86;--k:3.37deg;--o:0.45s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:57.7deg;--l:0.92;--k:-5.65deg;--o:0.5s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:85.6deg;--l:0.96;--k:4.85deg;--o:0.55s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:109.7deg;--l:0.96;--k:4.53deg;--o:0.6s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:134.2deg;--l:0.88;--k:-3.91deg;--o:0.65s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:154.8deg;--l:0.89;--k:4.89deg;--o:0.7s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:181.1deg;--l:0.93;--k:-5.16deg;--o:0.75s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:205.2deg;--l:0.99;--k:-6.0deg;--o:0.8s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:227.7deg;--l:0.91;--k:-3.81deg;--o:0.85s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:253.4deg;--l:0.96;--k:-4.63deg;--o:0.9s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:277.1deg;--l:0.89;--k:0.87deg;--o:0.95s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:301.7deg;--l:0.98;--k:-1.85deg;--o:1.0s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:320.6deg;--l:0.94;--k:-3.97deg;--o:1.05s"></div>
+                            <div class="flower_petal flower_petal-in" style="--a:348.6deg;--l:0.91;--k:2.41deg;--o:1.1s"></div>
+                            <div class="flower_center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flower_light flower_light-1"></div>
+        <div class="flower_light flower_light-2"></div>
+        <div class="flower_light flower_light-3"></div>
+        <div class="flower_light flower_light-4"></div>
+        <div class="flower_light flower_light-5"></div>
+        <div class="flower_light flower_light-6"></div>
+        <div class="flower_light flower_light-7"></div>
+        <div class="flower_light flower_light-8"></div>
+    </div>
+
+    <div class="pot_part pot_body"></div>
+    <div class="pot_part pot_band"></div>
+    <div class="pot_part pot_rim"></div>
+
+    <div class="bow">
+        <span class="bow_tail bow_tail-l"></span>
+        <span class="bow_tail bow_tail-r"></span>
+        <span class="bow_loop bow_loop-l"></span>
+        <span class="bow_loop bow_loop-r"></span>
+        <span class="bow_knot"></span>
+    </div>
+
+    <button class="music" type="button" aria-pressed="false" aria-label="Activar música">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path class="music_speaker" d="M3 9v6h4l5 4V5L7 9H3z"/>
+            <path class="music_waves" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.8a9 9 0 0 1 0 12.4"/>
+            <path class="music_off" d="M16 9l5 6M21 9l-5 6"/>
+        </svg>
+    </button>
+
+    <svg class="tag_string" viewBox="0 0 30 16" aria-hidden="true">
+        <path d="M0,13.8 Q13,16.2 27,0.4" pathLength="1" fill="none" stroke="#a67c3d" stroke-width="0.45" stroke-linecap="round"/>
+    </svg>
+    <div class="tag">
+        <span class="tag_eyelet"></span>
+        <p class="tag_date">21 de septiembre</p>
+        <p class="tag_title">Feliz Día de las<br>Flores Amarillas</p>
+        <p class="tag_text">Que este Día de las Flores Amarillas te recuerde lo especial que eres. Que la alegría te acompañe como el sol acompaña al girasol, que cada pétalo de este ramo te regale una sonrisa, y que la luz de sus colores te alcance siempre. ¡Feliz Día de las Flores Amarillas!</p>
+        <p class="tag_sign">Con todo cariño 🌻</p>
     </div>
 
     <div class="light light-1"></div>
@@ -52,5 +999,7 @@
     <div class="light light-11"></div>
     <div class="light light-12"></div>
 
+    <script src="intro.js"></script>
+    <script src="music.js"></script>
 </body>
 </html>

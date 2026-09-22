@@ -5,11 +5,14 @@
 }
 
 :root {
-    --color-bg: linear-gradient(to top, #00d4ff, #000); 
-    --line-color: linear-gradient(to left top, #82ff86 20%, #144425, #104e1c);
-    --flower-center: radial-gradient(circle, #000, #ff5e00);
-    --leaf-color: radial-gradient(circle, #82ff86, #104e1c);
-    --petal-color: radial-gradient(circle, #ff5e00, #ffbb00);
+    --color-bg: linear-gradient(to top, #00d4ff, #000);
+    --line-color: linear-gradient(90deg, #2c5a1c 0%, #5f9b3a 38%, #3d7626 68%, #21451a 100%);
+    --leaf-color: radial-gradient(ellipse at 50% 68%, #78b84f 0%, #3f8030 55%, #245a1e 100%);
+    --petal-color: linear-gradient(to bottom, #e58a00 0%, #f7a900 24%, #ffc80f 58%, #ffdb3d 100%);
+    --petal-color-in: linear-gradient(to bottom, #c96d00 0%, #eb9600 30%, #fbb812 70%, #ffd02c 100%);
+    --sepal-color: linear-gradient(to bottom, #2f6d22, #67a83f);
+    --ease-grow: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --ease-bloom: cubic-bezier(0.3, 1.4, 0.5, 1);
 }
 
 body{
@@ -21,116 +24,704 @@ body{
     overflow: hidden;
 }
 
-.flower_wrapper{
+/* ---------- Ramo ---------- */
+
+.bouquet{
     position: absolute;
     left: 50%;
-    bottom: 2vmin;
-    animation: moving-flower-1 4s linear infinite;
+    bottom: 20.6vmin;
+    width: 0;
+    height: 0;
+    z-index: 2;
 }
 
+/* Cada flor: --t inclinación, --h alto del tallo, --s tamaño de la cabeza, --d retraso (s),
+   --n inclinación del cuello, --x aplastamiento de la cara (vista de tres cuartos) */
+.flower,
+.flower_sway{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: calc(var(--h) * 1vmin);
+    transform-origin: 50% 100%;
+}
+
+.flower{
+    left: calc(var(--bx) * 1vmin);
+    transform: rotate(var(--t));
+}
+
+.flower_sway{
+    animation: sway 6s ease-in-out calc(var(--d) * 1s + 4s) infinite;
+}
+
+/* Tallo grueso, más ancho en la base, con sombreado cilíndrico y pelusilla */
 .flower_stem{
-    width: 2vmin;
-    height: 65vmin;
-    background-image: var(--line-color);
-    border-radius: 4vmin;
-    animation-delay: 0.3s;
-}
-
-.flower_center{
     position: absolute;
-    top: 0vmin;
-    left: 50%;
-    z-index: 5;
-    transform: translateX(-50%) rotate(-10deg);
-    width: 20vmin;
-    height: 20vmin;
-    border-radius: 50%;
-    background: var(--flower-center);
-    animation: open-flower-middle 2s 0.4s backwards;
+    left: -1.3vmin;
+    bottom: 0;
+    width: 2.6vmin;
+    height: 100%;
+    background:
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.10) 0 0.25vmin, transparent 0.25vmin 0.9vmin),
+        var(--line-color);
+    clip-path: polygon(24% 0, 76% 0, 100% 100%, 0 100%);
+    transform-origin: 50% 100%;
+    animation: grow-stem 2.6s var(--ease-grow) calc(var(--d) * 1s) backwards;
 }
 
-.flower_petal{
-    position: absolute;
-    left: 50%;
-    z-index: 3;
-    bottom: 55vmin;
-    transform: translateX(-50%);
-    width: 7vmin;
-    height: 17vmin;
-    height: 20vmin;
-    background: var(--petal-color);
-    clip-path: ellipse(50% 50% at 50% 50%);
-    transform-origin: center bottom;
-    animation: open-flower 2s 1s backwards;
+.flower_stem-thin{
+    left: -0.35vmin;
+    width: 0.7vmin;
+    clip-path: none;
+    border-radius: 1vmin;
 }
 
-.flower_petal-1{
-    border-radius: 50% 50% 50% / 80% 80% 20% 20%;
-    background-image: none;
-    background: var(--petal-color);
-    animation: open-flower 1.4s 1s backwards;
-}
+/* ---------- Hojitas: 2 o 3 por tallo, proporcionales a la flor ---------- */
 
-.flower_petal-2{
-    transform: translateX(-50%) rotate(-30deg);
-}
-.flower_petal-3{
-    transform: translateX(-50%) rotate(-60deg);
-}
-.flower_petal-4{
-    transform: translateX(-50%) rotate(-90deg);
-}
-.flower_petal-5{
-    transform: translateX(-50%) rotate(-120deg);
-}
-.flower_petal-6{
-    transform: translateX(-50%) rotate(-150deg);
-}
-.flower_petal-7{
-    transform: translateX(-50%) rotate(30deg);
-}
-.flower_petal-8{
-    transform: translateX(-50%) rotate(60deg);
-}
-.flower_petal-9{
-    transform: translateX(-50%) rotate(90deg);
-}
-.flower_petal-10{
-    transform: translateX(-50%) rotate(120deg);
-}
-.flower_petal-11{
-    transform: translateX(-50%) rotate(150deg);
-}
-.flower_petal-12{
-    transform: translateX(-50%) rotate(180deg);
-}
-
+/* --a ángulo respecto al tallo, --L largo, --p altura sobre el tallo, --o retraso extra */
 .flower_leaf{
     position: absolute;
-    left: 60%;
-    bottom: 18vmin;
-    transform: translateX(-45%) rotate(80deg);
-    width: 7vmin;
-    height: 17vmin;
-    background: var(--leaf-color);
-    clip-path: none;
-    border-radius: 10vmin 2vmin 10vmin 2vmin;
-    transform-origin: center bottom;
+    bottom: var(--p);
+    left: 0;
+    width: calc(var(--L) * 0.6667vmin);
+    height: calc(var(--L) * 1vmin);
+    margin-left: calc(var(--L) * -0.3333vmin);
+    transform-origin: 50% 100%;
+    transform: rotate(var(--a));
+    animation: grow-foliage 1.2s var(--ease-bloom) calc(var(--d) * 1s + 1.1s + var(--o)) backwards;
 }
 
-.flower_leaf-1{
-    bottom: 18vmin;
-    transform: translateX(-45%) rotate(80deg);
+.flower_leaf_art{
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
 }
 
-.flower_leaf-2{
-    bottom: 23vmin;
-    transform: translateX(-55%) rotate(-80deg);
+/* ---------- Cabeza ---------- */
+
+.flower_head{
+    --u: calc(var(--s) * 1vmin);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    animation: rise-head 2.6s var(--ease-grow) calc(var(--d) * 1s) backwards;
 }
+
+.flower_bud{
+    position: absolute;
+    top: calc(var(--u) * -8);
+    left: calc(var(--u) * -8);
+    width: calc(var(--u) * 16);
+    height: calc(var(--u) * 16);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #93d15c, #3f8030 60%, #24581d);
+    animation: bud 3.2s ease-out calc(var(--d) * 1s) both;
+}
+
+.flower_face{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    transform: rotate(var(--n)) scale(var(--x), 1);
+}
+
+.flower_bloom{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    filter: drop-shadow(0 0.5vmin 0.7vmin rgba(0, 0, 0, 0.35));
+    animation: nod 7s ease-in-out calc(var(--d) * 1s + 4s) infinite;
+}
+
+/* Sépalos verdes que asoman entre los pétalos */
+.flower_sepal{
+    position: absolute;
+    top: 0;
+    left: calc(var(--u) * -3);
+    width: calc(var(--u) * 6);
+    height: calc(var(--u) * 17);
+    background: var(--sepal-color);
+    clip-path: polygon(10% 0, 90% 0, 100% 42%, 50% 100%, 0 42%);
+    transform-origin: 50% 0;
+    transform: rotate(var(--a));
+    animation: open-flower 1s var(--ease-bloom) calc(var(--d) * 1s + 1.3s + var(--o)) backwards;
+}
+
+/* Pétalos lanceolados, más oscuros en la base y con nervadura central */
+.flower_petal{
+    position: absolute;
+    top: 0;
+    left: calc(var(--u) * -4);
+    width: calc(var(--u) * 8);
+    height: calc(var(--u) * 24);
+    background:
+        linear-gradient(90deg, rgba(120, 60, 0, 0.30), transparent 20%, rgba(255, 250, 190, 0.28) 49%, rgba(120, 60, 0, 0.16) 52%, transparent 80%, rgba(120, 60, 0, 0.30)),
+        repeating-linear-gradient(90deg, rgba(150, 80, 0, 0.16) 0 1px, transparent 1px 14%),
+        var(--petal-color);
+    clip-path: polygon(44% 0, 56% 0, 68% 18%, 82% 40%, 90% 60%, 80% 80%, 62% 94%, 50% 100%, 38% 94%, 20% 80%, 10% 60%, 18% 40%, 32% 18%);
+    transform-origin: 50% 0;
+    transform: rotate(var(--a)) scale(1, var(--l)) skewX(var(--k));
+    animation: open-flower 1.3s var(--ease-bloom) calc(var(--d) * 1s + 1.8s + var(--o)) backwards;
+}
+
+.flower_petal-in{
+    left: calc(var(--u) * -3.5);
+    width: calc(var(--u) * 7);
+    height: calc(var(--u) * 19);
+    background:
+        linear-gradient(90deg, rgba(90, 40, 0, 0.32), transparent 20%, rgba(255, 240, 160, 0.20) 49%, rgba(90, 40, 0, 0.16) 52%, transparent 80%, rgba(90, 40, 0, 0.32)),
+        var(--petal-color-in);
+}
+
+/* Disco de semillas: retícula polar sobre degradado marrón, borde de flósculos dorados */
+.flower_center{
+    position: absolute;
+    top: calc(var(--u) * -11);
+    left: calc(var(--u) * -11);
+    width: calc(var(--u) * 22);
+    height: calc(var(--u) * 22);
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 36% 30%, rgba(255, 224, 150, 0.30), transparent 38%),
+        repeating-conic-gradient(rgba(0, 0, 0, 0.34) 0deg 4deg, transparent 4deg 8deg),
+        repeating-radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.30) 0 calc(var(--u) * 0.55), transparent calc(var(--u) * 0.55) calc(var(--u) * 1.1)),
+        radial-gradient(circle, #2a1206 0%, #3b1c09 30%, #5a3210 58%, #7d4d17 74%, #b5771f 88%, #e0a12c 100%);
+    box-shadow: inset 0 0 calc(var(--u) * 1.6) rgba(0, 0, 0, 0.55);
+    animation: open-flower-middle 0.9s var(--ease-bloom) calc(var(--d) * 1s + 2.3s) backwards;
+}
+
+.flower_center::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: repeating-conic-gradient(from 3deg, rgba(255, 190, 80, 0.16) 0deg 2deg, transparent 2deg 5.5deg);
+    -webkit-mask: radial-gradient(circle, transparent 18%, #000 55%);
+    mask: radial-gradient(circle, transparent 18%, #000 55%);
+}
+
+/* ---------- Gypsophila (relleno) ---------- */
+
+.sprig_puff{
+    --q: 1vmin;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(var(--q) * 1.6);
+    height: calc(var(--q) * 1.6);
+    border-radius: 50%;
+    background: #fff;
+    box-shadow:
+        calc(var(--q) * 1.4) calc(var(--q) * -1.9) 0 calc(var(--q) * -0.1) #ffffff,
+        calc(var(--q) * -2.6) calc(var(--q) * -3.4) 0 calc(var(--q) * -0.2) #f4f8ff,
+        calc(var(--q) * 3.9) calc(var(--q) * -4.6) 0 calc(var(--q) * -0.25) #ffffff,
+        calc(var(--q) * -4.4) calc(var(--q) * 0.1) 0 calc(var(--q) * -0.1) #ffffff,
+        calc(var(--q) * 4.6) calc(var(--q) * 0.6) 0 calc(var(--q) * -0.3) #eaf1e4,
+        calc(var(--q) * -0.8) calc(var(--q) * -6.6) 0 calc(var(--q) * -0.15) #ffffff,
+        calc(var(--q) * 1.2) calc(var(--q) * 2.4) 0 calc(var(--q) * -0.2) #f4f8ff,
+        calc(var(--q) * -1.8) calc(var(--q) * 1.6) 0 calc(var(--q) * -0.3) #ffffff,
+        calc(var(--q) * 2.8) calc(var(--q) * -7.2) 0 calc(var(--q) * -0.3) #ffffff,
+        calc(var(--q) * -5.6) calc(var(--q) * -5.2) 0 calc(var(--q) * -0.25) #eaf1e4,
+        calc(var(--q) * 6.2) calc(var(--q) * -2.4) 0 calc(var(--q) * -0.2) #ffffff,
+        calc(var(--q) * -3.4) calc(var(--q) * -8) 0 calc(var(--q) * -0.35) #ffffff,
+        calc(var(--q) * 0.4) calc(var(--q) * -4) 0 calc(var(--q) * -0.3) #f4f8ff,
+        calc(var(--q) * 5.2) calc(var(--q) * 3) 0 calc(var(--q) * -0.35) #ffffff,
+        calc(var(--q) * -5.8) calc(var(--q) * 3.2) 0 calc(var(--q) * -0.3) #ffffff,
+        calc(var(--q) * -1.2) calc(var(--q) * 4.2) 0 calc(var(--q) * -0.35) #eaf1e4;
+    animation:
+        rise-head 2.6s var(--ease-grow) calc(var(--d) * 1s) backwards,
+        pop-puff 1.6s var(--ease-bloom) calc(var(--d) * 1s + 1.4s) backwards;
+}
+
+/* ---------- Macetero redondo con lazo ---------- */
+
+.pot_shadow{
+    position: absolute;
+    left: 50%;
+    bottom: 1.4vmin;
+    width: 40vmin;
+    height: 4.4vmin;
+    margin-left: -20vmin;
+    background: radial-gradient(ellipse, rgba(0, 0, 0, 0.5), transparent 70%);
+    animation: rise-wrap 1s ease-out backwards;
+}
+
+/* Todas las piezas comparten la misma caja de 32 x 24 vmin y se recortan con clip-path */
+.pot_part{
+    position: absolute;
+    left: 50%;
+    bottom: 3vmin;
+    width: 32vmin;
+    height: 24vmin;
+    margin-left: -16vmin;
+    animation: rise-wrap 1s ease-out backwards;
+}
+
+/* Borde superior (elipse) */
+.pot_rim_top{
+    z-index: 1;
+    background: linear-gradient(90deg, #7a3013, #c4633a 22%, #f0a075 48%, #c4633a 74%, #6e2a10);
+    clip-path: ellipse(50% 14.17% at 50% 14.17%);
+}
+
+/* Tierra oscura con guijarros */
+.pot_soil{
+    z-index: 1;
+    background:
+        radial-gradient(circle at 34% 12%, #8a6a4a 0 0.45vmin, transparent 0.5vmin),
+        radial-gradient(circle at 61% 17%, #7a5b3d 0 0.4vmin, transparent 0.45vmin),
+        radial-gradient(circle at 46% 20%, #957552 0 0.35vmin, transparent 0.4vmin),
+        radial-gradient(circle at 72% 11%, #6f5136 0 0.4vmin, transparent 0.45vmin),
+        radial-gradient(circle at 24% 17%, #6f5136 0 0.35vmin, transparent 0.4vmin),
+        radial-gradient(ellipse 13.8vmin 2.8vmin at 50% 3.4vmin, #45301d 20%, #2c1c10 70%, #170d06 100%);
+    clip-path: ellipse(43.1% 10.8% at 50% 14.17%);
+}
+
+/* Cuerpo del macetero: terracota con sombreado cilíndrico */
+.pot_body{
+    z-index: 3;
+    background:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.38) 20%, transparent 40%, transparent 72%, rgba(0, 0, 0, 0.28)),
+        linear-gradient(90deg, #6b2a10 0%, #a94a25 16%, #d8734a 36%, #eb9264 46%, #cc6a3f 62%, #93401d 84%, #5a230d 100%);
+    clip-path: polygon(4.69% 20.83%, 95.31% 20.83%, 83.12% 88.33%, 83.12% 88.33%, 82.92% 89.64%, 82.29% 90.93%, 81.27% 92.19%, 79.84% 93.40%, 78.05% 94.54%, 75.90% 95.61%, 73.42% 96.58%, 70.65% 97.45%, 67.62% 98.21%, 64.37% 98.84%, 60.94% 99.35%, 57.37% 99.71%, 53.71% 99.93%, 50.00% 100.00%, 46.29% 99.93%, 42.63% 99.71%, 39.06% 99.35%, 35.63% 98.84%, 32.38% 98.21%, 29.35% 97.45%, 26.58% 96.58%, 24.10% 95.61%, 21.95% 94.54%, 20.16% 93.40%, 18.73% 92.19%, 17.71% 90.93%, 17.08% 89.64%, 16.88% 88.33%, 16.88% 88.33%);
+}
+
+/* Cinta alrededor del macetero */
+.pot_band{
+    z-index: 3;
+    background: linear-gradient(90deg, #6e0c1c, #b3162d 24%, #e8556a 44%, #c4283f 60%, #92122a 82%, #5c0a17);
+    clip-path: polygon(11.77% 58.33%, 12.01% 59.55%, 12.73% 60.74%, 13.92% 61.91%, 15.56% 63.03%, 17.63% 64.10%, 20.11% 65.09%, 22.97% 65.99%, 26.16% 66.80%, 29.66% 67.51%, 33.41% 68.09%, 37.37% 68.56%, 41.49% 68.90%, 45.72% 69.10%, 50.00% 69.17%, 54.28% 69.10%, 58.51% 68.90%, 62.63% 68.56%, 66.59% 68.09%, 70.34% 67.51%, 73.84% 66.80%, 77.03% 65.99%, 79.89% 65.09%, 82.37% 64.10%, 84.44% 63.03%, 86.08% 61.91%, 87.27% 60.74%, 87.99% 59.55%, 88.23% 58.33%, 85.52% 73.33%, 85.30% 74.50%, 84.63% 75.65%, 83.53% 76.77%, 82.00% 77.85%, 80.08% 78.88%, 77.77% 79.83%, 75.12% 80.70%, 72.15% 81.48%, 68.90% 82.15%, 65.41% 82.72%, 61.73% 83.17%, 57.90% 83.49%, 53.98% 83.68%, 50.00% 83.75%, 46.02% 83.68%, 42.10% 83.49%, 38.27% 83.17%, 34.59% 82.72%, 31.10% 82.15%, 27.85% 81.48%, 24.88% 80.70%, 22.23% 79.83%, 19.92% 78.88%, 18.00% 77.85%, 16.47% 76.77%, 15.37% 75.65%, 14.70% 74.50%, 14.48% 73.33%);
+}
+
+/* Labio del macetero */
+.pot_rim{
+    z-index: 3;
+    background:
+        linear-gradient(to bottom, rgba(255, 236, 214, 0.40) 0%, transparent 30%, rgba(0, 0, 0, 0.18) 46%),
+        linear-gradient(90deg, #7a3013 0%, #bd5a31 16%, #ee9a6c 38%, #f7b48c 46%, #d47a4c 62%, #a04520 84%, #6a290f 100%);
+    clip-path: polygon(0.00% 14.17%, 0.31% 15.75%, 1.25% 17.32%, 2.81% 18.85%, 4.95% 20.31%, 7.66% 21.70%, 10.91% 23.00%, 14.64% 24.18%, 18.83% 25.24%, 23.40% 26.16%, 28.31% 26.93%, 33.49% 27.54%, 38.87% 27.98%, 44.40% 28.24%, 50.00% 28.33%, 55.60% 28.24%, 61.13% 27.98%, 66.51% 27.54%, 71.69% 26.93%, 76.60% 26.16%, 81.17% 25.24%, 85.36% 24.18%, 89.09% 23.00%, 92.34% 21.70%, 95.05% 20.31%, 97.19% 18.85%, 98.75% 17.32%, 99.69% 15.75%, 100.00% 14.17%, 100.00% 31.67%, 99.69% 33.25%, 98.75% 34.82%, 97.19% 36.35%, 95.05% 37.81%, 92.34% 39.20%, 89.09% 40.50%, 85.36% 41.68%, 81.17% 42.74%, 76.60% 43.66%, 71.69% 44.43%, 66.51% 45.04%, 61.13% 45.48%, 55.60% 45.74%, 50.00% 45.83%, 44.40% 45.74%, 38.87% 45.48%, 33.49% 45.04%, 28.31% 44.43%, 23.40% 43.66%, 18.83% 42.74%, 14.64% 41.68%, 10.91% 40.50%, 7.66% 39.20%, 4.95% 37.81%, 2.81% 36.35%, 1.25% 34.82%, 0.31% 33.25%, 0.00% 31.67%);
+}
+
+/* Lazo grande, centrado sobre la cinta */
+.bow{
+    position: absolute;
+    left: 50%;
+    bottom: 11.2vmin;
+    width: 0;
+    height: 0;
+    z-index: 4;
+    filter: drop-shadow(0 0.5vmin 0.6vmin rgba(0, 0, 0, 0.4));
+    animation: pop-bow 1.2s var(--ease-bloom) 0.9s backwards;
+}
+
+.bow_loop{
+    position: absolute;
+    top: -4vmin;
+    width: 9vmin;
+    height: 7vmin;
+    background: linear-gradient(150deg, #ee5f75, #b3162d 55%, #7a0f20);
+}
+
+.bow_loop::before{
+    content: "";
+    position: absolute;
+    inset: 1.2vmin 1.5vmin;
+    border-radius: inherit;
+    background: linear-gradient(150deg, #8f1428, #b3162d);
+    box-shadow: inset 0 0 0.8vmin rgba(40, 0, 8, 0.6);
+}
+
+.bow_loop-l{
+    left: -10vmin;
+    border-radius: 85% 25% 25% 85% / 65% 45% 45% 65%;
+    transform-origin: 100% 60%;
+    transform: rotate(-14deg);
+}
+
+.bow_loop-r{
+    left: 1vmin;
+    border-radius: 25% 85% 85% 25% / 45% 65% 65% 45%;
+    transform-origin: 0 60%;
+    transform: rotate(14deg);
+}
+
+.bow_tail{
+    position: absolute;
+    top: 0.4vmin;
+    width: 3.2vmin;
+    height: 9.5vmin;
+    background: linear-gradient(90deg, #8f1428, #d63a4f 45%, #a3142b);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 88%, 0 100%);
+    transform-origin: 50% 0;
+}
+
+.bow_tail-l{
+    left: -3.4vmin;
+    transform: rotate(13deg);
+}
+
+.bow_tail-r{
+    left: 0.2vmin;
+    transform: rotate(-13deg);
+}
+
+.bow_knot{
+    position: absolute;
+    top: -2.2vmin;
+    left: -2vmin;
+    width: 4vmin;
+    height: 4.4vmin;
+    border-radius: 42%;
+    background: radial-gradient(circle at 35% 30%, #f0657a, #b3162d 60%, #7a0f20);
+    box-shadow: inset 0 -0.4vmin 0.6vmin rgba(40, 0, 8, 0.5);
+}
+
+/* ---------- Pantalla de bienvenida ---------- */
+
+/* Mientras espera, toda la animación queda en pausa en su primer fotograma */
+body.waiting :not(.intro):not(.intro *),
+body.waiting :not(.intro):not(.intro *)::before,
+body.waiting :not(.intro):not(.intro *)::after{
+    animation-play-state: paused !important;
+}
+
+.intro{
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    display: grid;
+    place-items: center;
+    padding: 0 16px;
+    background: radial-gradient(circle at 50% 42%, rgba(255, 210, 40, 0.28), rgba(0, 8, 14, 0.92) 70%);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    color: #fff8e1;
+    text-align: center;
+    transition: opacity 0.8s ease;
+}
+
+.intro.is-hidden{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.intro_box{
+    max-width: min(92vw, 92vmin);
+}
+
+.intro_emoji{
+    font-size: max(48px, 11vmin);
+    line-height: 1;
+    animation: spark-pop 0.8s var(--ease-bloom) backwards;
+}
+
+.intro_title{
+    margin-top: 1.4vmin;
+    font-family: "Snell Roundhand", "Apple Chancery", "Segoe Script", "Brush Script MT", cursive;
+    font-size: max(34px, 7vmin);
+    color: #ffd21f;
+}
+
+.intro_sub{
+    margin-top: 1vmin;
+    font: 500 max(13px, 2vmin) / 1.4 "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: 0.2vmin;
+    opacity: 0.9;
+}
+
+/* ---------- Paso 1: nombre de quien recibe el regalo ---------- */
+
+.intro_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.3vmin;
+    margin-top: 3.6vmin;
+    animation: tag-in 0.8s var(--ease-bloom) 0.3s backwards;
+}
+
+.intro_label{
+    font: 600 max(14px, 2.1vmin) / 1.3 "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: 0.15vmin;
+    color: #fff8e1;
+}
+
+.intro_input{
+    width: min(78vw, 46vmin);
+    padding: max(10px, 1.5vmin) max(16px, 2.2vmin);
+    border: 0.2vmin solid rgba(255, 210, 40, 0.6);
+    border-radius: 10vmin;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff8e1;
+    font: 500 max(15px, 2.1vmin) "Helvetica Neue", Arial, sans-serif;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.intro_input::placeholder{
+    color: rgba(255, 248, 225, 0.55);
+}
+
+.intro_input:focus{
+    border-color: #ffd21f;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.intro_next{
+    margin-top: 0.6vmin;
+    padding: max(10px, 1.5vmin) max(24px, 3.6vmin);
+    border: 0;
+    border-radius: 10vmin;
+    background: linear-gradient(#ffd84a, #f5b400);
+    color: #3b2400;
+    font: 700 max(14px, 2.1vmin) "Helvetica Neue", Arial, sans-serif;
+    cursor: pointer;
+    box-shadow: 0 0.8vmin 2vmin rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s;
+}
+
+.intro_next:hover{
+    transform: scale(1.06);
+}
+
+.intro_next:focus-visible,
+.intro_input:focus-visible{
+    outline: 3px solid #ffd21f;
+    outline-offset: 3px;
+}
+
+/* ---------- Paso 2: mensaje animado y botón final ---------- */
+
+.intro_box-greeting .intro_emoji{
+    animation: none;
+}
+
+.intro_message{
+    margin-top: 2vmin;
+    max-width: min(88vw, 74vmin);
+    font-family: "Snell Roundhand", "Apple Chancery", "Segoe Script", "Brush Script MT", cursive;
+    font-size: max(24px, 5.4vmin);
+    line-height: 1.3;
+}
+
+/* Cada letra entra por separado: --i la ordena en el tiempo */
+.letter{
+    display: inline-block;
+    animation: letter-in 0.6s var(--ease-bloom) calc(var(--i) * 45ms) backwards;
+}
+
+.letter-space{
+    width: 0.28em;
+}
+
+.intro_spark{
+    margin-top: 1.6vmin;
+    font-size: max(20px, 3.6vmin);
+    letter-spacing: 1vmin;
+    opacity: 0;
+    animation: spark-pop 0.7s var(--ease-bloom) both;
+}
+
+.intro_btn{
+    margin-top: 3.4vmin;
+    padding: max(12px, 1.7vmin) max(26px, 4vmin);
+    border: 0;
+    border-radius: 10vmin;
+    background: linear-gradient(#ffd84a, #f5b400);
+    color: #3b2400;
+    font: 700 max(15px, 2.3vmin) "Helvetica Neue", Arial, sans-serif;
+    cursor: pointer;
+    box-shadow: 0 1vmin 2.4vmin rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    transition: transform 0.2s;
+    animation: btn-pop-in 0.7s var(--ease-bloom) both;
+}
+
+.intro_btn:hover{
+    transform: scale(1.06);
+}
+
+.intro_btn:focus-visible{
+    outline: 3px solid #fff;
+    outline-offset: 4px;
+}
+
+/* ---------- Botón de música ---------- */
+
+.music{
+    position: fixed;
+    top: 2.4vmin;
+    right: 2.4vmin;
+    z-index: 10;
+    display: grid;
+    place-items: center;
+    width: max(44px, 6.4vmin);
+    height: max(44px, 6.4vmin);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+
+.music:hover{
+    transform: scale(1.07);
+}
+
+.music:focus-visible{
+    outline: 3px solid #ffd21f;
+    outline-offset: 3px;
+}
+
+.music svg{
+    width: 55%;
+    height: 55%;
+    fill: currentColor;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    fill-rule: evenodd;
+}
+
+.music_speaker{
+    stroke-linejoin: round;
+}
+
+.music_waves,
+.music_off{
+    fill: none;
+}
+
+.music_waves{
+    opacity: 0;
+}
+
+.music.is-on{
+    background: rgba(255, 205, 30, 0.92);
+    border-color: rgba(255, 255, 255, 0.9);
+    color: #3b2400;
+    animation: music-pulse 2.4s ease-out infinite;
+}
+
+.music.is-on .music_waves{
+    opacity: 1;
+}
+
+.music.is-on .music_off{
+    display: none;
+}
+
+.music.is-missing{
+    opacity: 0.45;
+    cursor: not-allowed;
+    animation: none;
+}
+
+/* ---------- Tarjeta de regalo ---------- */
+
+.tag_string{
+    position: absolute;
+    left: 50%;
+    bottom: 9vmin;
+    width: 30vmin;
+    height: 16vmin;
+    z-index: 5;
+    overflow: visible;
+}
+
+.tag_string path{
+    stroke-dasharray: 1;
+    animation: draw-string 1s ease-out 1.6s backwards;
+}
+
+.tag{
+    position: absolute;
+    left: 50%;
+    margin-left: 12vmin;
+    bottom: 2.6vmin;
+    width: 36vmin;
+    height: auto;
+    min-height: 22vmin;
+    z-index: 5;
+    padding: 3.8vmin 2.4vmin 1.8vmin;
+    text-align: center;
+    color: #5b3a12;
+    background:
+        repeating-linear-gradient(0deg, rgba(150, 110, 40, 0.05) 0 0.2vmin, transparent 0.2vmin 0.7vmin),
+        linear-gradient(160deg, #fffaf0, #fdeeb8 70%, #f6dc8f);
+    border-radius: 0.9vmin;
+    box-shadow: 0 1vmin 1.8vmin rgba(0, 0, 0, 0.38);
+    transform-origin: 50% 1.9vmin;
+    transform: rotate(4deg);
+    animation:
+        tag-in 1s var(--ease-bloom) 1.9s backwards,
+        tag-swing 6s ease-in-out 3.2s infinite;
+}
+
+.tag::before{
+    content: "";
+    position: absolute;
+    inset: 0.9vmin;
+    border: 0.2vmin dashed rgba(200, 140, 20, 0.6);
+    border-radius: 0.5vmin;
+}
+
+.tag_eyelet{
+    position: absolute;
+    top: 1vmin;
+    left: 50%;
+    width: 1.8vmin;
+    height: 1.8vmin;
+    margin-left: -0.9vmin;
+    border-radius: 50%;
+    background: radial-gradient(circle, #2a1a08 0 32%, #f2c968 34% 62%, #b98a2c 64% 100%);
+}
+
+.tag_date{
+    font: 700 1.25vmin/1 "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: 0.35vmin;
+    text-transform: uppercase;
+    color: #a07a1a;
+    margin-bottom: 0.8vmin;
+}
+
+.tag_title{
+    font-family: "Snell Roundhand", "Apple Chancery", "Segoe Script", "Brush Script MT", cursive;
+    font-size: 2.9vmin;
+    line-height: 1.08;
+    color: #b35400;
+    margin-bottom: 1vmin;
+}
+
+.tag_text{
+    font: italic 1.4vmin/1.4 Georgia, "Times New Roman", serif;
+}
+
+.tag_sign{
+    font-family: "Snell Roundhand", "Apple Chancery", "Segoe Script", "Brush Script MT", cursive;
+    font-size: 2.1vmin;
+    color: #b35400;
+    margin-top: 0.9vmin;
+}
+
+/* ---------- Luces ---------- */
 
 .flower_light{
     position: absolute;
-    bottom: 70vmin;
+    bottom: 30vmin;
     width: 1vmin;
     height: 1vmin;
     background-color: rgb(255, 251, 0);
@@ -139,48 +730,48 @@ body{
     animation: light-ans 4s linear infinite backwards;
 }
 
-    :nth-child(odd){
+    .flower_light:nth-child(odd){
         background-color: #23f0ff;
     }
 
     .flower_light-1{
-        left: -2vmin;
-        animation-delay: 1s;
+        left: -20vmin;
+        animation-delay: 4s;
     }
 
     .flower_light-2{
-        left: 3vmin;
-        animation-delay: 0.5s;
+        left: 14vmin;
+        animation-delay: 4.5s;
     }
 
     .flower_light-3{
-        left: -6vmin;
-        animation-delay: 0.3s;
+        left: -32vmin;
+        animation-delay: 5s;
     }
 
     .flower_light-4{
-        left: 6vmin;
-        animation-delay: 0.9s;
+        left: 30vmin;
+        animation-delay: 5.5s;
     }
 
     .flower_light-5{
-        left: -1vmin;
-        animation-delay: 1.5s;
+        left: -6vmin;
+        animation-delay: 6s;
     }
 
     .flower_light-6{
-        left: -4vmin;
-        animation-delay: 3s;
+        left: -26vmin;
+        animation-delay: 6.5s;
     }
 
     .flower_light-7{
-        left: 3vmin;
-        animation-delay: 2s;
+        left: 22vmin;
+        animation-delay: 7s;
     }
 
     .flower_light-8{
-        left: -6vmin;
-        animation-delay: 3.5s;
+        left: -12vmin;
+        animation-delay: 7.5s;
     }
 
 .light{
@@ -193,7 +784,7 @@ body{
     filter: blur(0.2vmin);
     animation: light-ans-background 7s linear infinite backwards;
 }
-    :nth-child(odd){
+    .light:nth-child(odd){
         background-color: #23f0ff;
     }
 
@@ -257,23 +848,186 @@ body{
         animation-delay: 0.5s;
     }
 
-@keyframes open-flower-leaves{
+/* ---------- Animaciones ---------- */
+
+@keyframes grow-stem{
+    0%{
+        transform: scaleY(0);
+    }
+}
+
+/* Sube junto con la punta del tallo (mismo tiempo y curva que grow-stem) */
+@keyframes rise-head{
+    0%{
+        transform: translateY(calc(var(--h) * 1vmin));
+    }
+}
+
+@keyframes grow-foliage{
+    0%{
+        scale: 0;
+        opacity: 0;
+    }
+    30%{
+        opacity: 1;
+    }
+}
+
+@keyframes pop-bow{
     0%{
         opacity: 0;
-        transform: translateX(-50%) scale(0);
+        scale: 0;
+    }
+}
+
+@keyframes music-pulse{
+    0%{
+        box-shadow: 0 0 0 0 rgba(255, 205, 30, 0.55);
+    }
+    100%{
+        box-shadow: 0 0 0 2.4vmin rgba(255, 205, 30, 0);
+    }
+}
+
+@keyframes draw-string{
+    0%{
+        stroke-dashoffset: 1;
+    }
+}
+
+@keyframes tag-in{
+    0%{
+        opacity: 0;
+        scale: 0.5;
+        translate: 0 -4vmin;
+    }
+}
+
+@keyframes tag-swing{
+    0%, 100%{
+        transform: rotate(4deg);
+    }
+    50%{
+        transform: rotate(7.5deg);
+    }
+}
+
+/* Cada letra del mensaje "salta" a su lugar con un pequeño giro y un
+   destello de color antes de asentarse en el dorado final */
+@keyframes letter-in{
+    0%{
+        opacity: 0;
+        transform: translateY(0.5em) scale(0.3) rotate(-16deg);
+        color: #ff8a00;
+    }
+    55%{
+        opacity: 1;
+        transform: translateY(-0.16em) scale(1.22) rotate(5deg);
+        color: #fff4c2;
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0deg);
+        color: #ffd21f;
+    }
+}
+
+@keyframes spark-pop{
+    0%{
+        opacity: 0;
+        transform: scale(0.3) rotate(-25deg);
+    }
+    60%{
+        opacity: 1;
+        transform: scale(1.15) rotate(8deg);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes btn-pop-in{
+    0%{
+        opacity: 0;
+        transform: scale(0.4) translateY(1.4vmin);
+    }
+    65%{
+        opacity: 1;
+        transform: scale(1.08) translateY(-0.4vmin);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Capullo verde: aparece mientras sube y se desvanece cuando abren los pétalos */
+@keyframes bud{
+    0%{
+        opacity: 1;
+        transform: scale(0);
+    }
+    65%{
+        opacity: 1;
+        transform: scale(1);
+    }
+    80%{
+        opacity: 1;
+        transform: scale(1);
+    }
+    100%{
+        opacity: 0;
+        transform: scale(1.25);
     }
 }
 
 @keyframes open-flower{
     0%{
-        transform: translateX(-50%) rotate(0);
+        transform: rotate(calc(var(--a) - 70deg)) scale(0);
     }
 }
 
 @keyframes open-flower-middle{
     0%{
+        transform: scale(0) rotate(-60deg);
+    }
+}
+
+@keyframes pop-puff{
+    0%{
+        scale: 0;
+    }
+}
+
+@keyframes rise-wrap{
+    0%{
         opacity: 0;
-        transform: translateX(-50%) scale(0);
+        transform: translateY(8vmin);
+    }
+}
+
+@keyframes sway{
+    0%, 100%{
+        transform: rotate(0deg);
+    }
+    25%{
+        transform: rotate(1.8deg);
+    }
+    75%{
+        transform: rotate(-1.8deg);
+    }
+}
+
+@keyframes nod{
+    0%, 100%{
+        transform: rotate(0deg);
+    }
+    30%{
+        transform: rotate(4deg);
+    }
+    70%{
+        transform: rotate(-4deg);
     }
 }
 
@@ -282,23 +1036,23 @@ body{
       opacity: 0;
       transform: translateY(0vmin);
     }
-  
+
     25% {
       opacity: 1;
       transform: translateY(-5vmin) translateX(-2vmin);
     }
-  
+
     50% {
       opacity: 1;
       transform: translateY(-15vmin) translateX(2vmin);
       filter: blur(0.2vmin);
     }
-  
+
     75% {
       transform: translateY(-20vmin) translateX(-2vmin);
       filter: blur(0.2vmin);
     }
-  
+
     100% {
       transform: translateY(-30vmin);
       opacity: 0;
@@ -311,23 +1065,23 @@ body{
       opacity: 0;
       transform: translateY(0vmin);
     }
-  
+
     25% {
       opacity: 1;
       transform: translateY(-10vmin) translateX(-2vmin);
     }
-  
+
     50% {
       opacity: 1;
       transform: translateY(-20vmin) translateX(2vmin);
       filter: blur(0.2vmin);
     }
-  
+
     60% {
       transform: translateY(-30vmin) translateX(-2vmin);
       filter: blur(0.2vmin);
     }
-  
+
     70% {
         transform: translateY(-40vmin) translateX(2vmin);
         filter: blur(0.2vmin);
@@ -342,5 +1096,28 @@ body{
       transform: translateY(-60vmin);
       opacity: 0;
       filter: blur(1vmin);
+    }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .flower_sway,
+    .flower_bloom,
+    .flower_light,
+    .light,
+    .music.is-on,
+    .tag,
+    .intro_emoji,
+    .intro_form,
+    .letter,
+    .intro_spark,
+    .intro_btn{
+        animation: none;
+    }
+
+    /* .intro_spark y .intro_btn parten de opacity:0 a la espera de su
+       animación de entrada; sin animación hay que mostrarlos directamente. */
+    .intro_spark,
+    .intro_btn{
+        opacity: 1;
     }
 }
